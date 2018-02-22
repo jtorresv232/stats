@@ -1,0 +1,14 @@
+<h3 class="flow-text" style="margin-bottom: 40px">Lista de Alumnos Jorge Robledo</h3>
+<table class="striped teal lighten-2 z-depth-2">
+	<tr class="grey darken-2" >
+		<th>ID</th>
+		<th>Nombre Completo</th>
+		<th>Grupo</th>
+	</tr>
+	<tr *ngFor="let alumno of alumnos">
+		<td>{{alumno.id}}</td>
+		<td>{{alumno.nombreCompleto}}</td>
+		<td>{{alumno.grupo}}</td>
+
+	</tr>
+</table>
