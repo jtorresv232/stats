@@ -1,14 +1,49 @@
-<h3 class="flow-text" style="margin-bottom: 40px">Lista de Alumnos Jorge Robledo</h3>
-<table class="striped teal lighten-2 z-depth-2">
-	<tr class="grey darken-2" >
-		<th>ID</th>
-		<th>Nombre Completo</th>
-		<th>Grupo</th>
-	</tr>
-	<tr *ngFor="let alumno of alumnos">
-		<td>{{alumno.id}}</td>
-		<td>{{alumno.nombreCompleto}}</td>
-		<td>{{alumno.grupo}}</td>
+<app-toolbar></app-toolbar>
 
-	</tr>
-</table>
+<div class="row">
+	<div class="container">
+		<div class="col-md-12">
+			<h3 class="flow-text" style="margin:20px">Lista de Alumnos Jorge Robledo</h3>
+		</div>
+		<div class="col-md-12">
+			<div class="row">
+				<!--<table class="table table-striped table-sm table-responsive">
+					<thead class="blue-grey lighten-4">
+						<tr>
+							<th>ID</th>
+							<th>Nombre Completo</th>
+							<th>Grupo</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let alumno of alumnos">
+							<td>{{alumno.id}}</td>
+							<td>{{alumno.nombreCompleto}}</td>
+							<td>{{alumno.grupo}}</td>
+						</tr>
+					</tbody>
+				</table>-->
+
+			<table class="table table-striped table-sm">
+				<thead class="blue-grey lighten-4">
+					<tr>
+						<th>ID</th>
+						<th>Nombre Completo</th>
+						<th>Grupo</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let alumno of alumnos">
+						<td>{{alumno.id}}</td>
+						<td>{{alumno.nombreCompleto}}</td>
+						<td>{{alumno.grupo}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>

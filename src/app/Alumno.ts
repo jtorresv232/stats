@@ -3,3 +3,10 @@ export interface IAlumno {
 	nombreCompleto: string,
 	grupo: string
 }
+
+export interface barras {
+	aciertos: number,
+	fallos: number,
+	nivel: number,
+	tipoOperacion: number
+}
