@@ -2,9 +2,9 @@
 	
 	<ul>
 		<li *ngFor="let opcion of options">
-			<div class="menus">
+			<div class="menus" (click)="reDireccionar(opcion.url)">
 				<i [ngClass]="opcion.icon" style="flex:1"></i>
-				<span style="flex:7" (click)="reDireccionar(opcion.url)" *ngIf="show">{{opcion.nombre}}</span>
+				<span style="flex:7" *ngIf="show">{{opcion.nombre}}</span>
 			</div>
 		</li>
 		<i id="toggleIcon" [ngClass]="class" class="showButton" (click)="whenClick()" aria-hidden="true"></i>
