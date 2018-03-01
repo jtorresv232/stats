@@ -1,0 +1,17 @@
+.toolColor {
+	background-color: #0288D1 !important;
+	color: #ffffff;
+	text-align: center;
+	display: flex;
+	align-content: flex;
+	margin: 0px;
+	padding: 0px;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0, 0.12);
+}
+
+.aAlign {
+	text-align: center;
+	color: #ffffff;
+	flex: 1;
+	font-size: 1rem;
+}

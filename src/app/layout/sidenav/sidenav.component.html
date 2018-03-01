@@ -1,0 +1,21 @@
+<div class="sidenav" [style.width]="getWidth()">
+	
+	<ul>
+		<li *ngFor="let opcion of options">
+			<div class="menus">
+				<i [ngClass]="opcion.icon" style="flex:1"></i>
+				<span style="flex:7" (click)="reDireccionar(opcion.url)" *ngIf="show">{{opcion.nombre}}</span>
+			</div>
+		</li>
+		<i id="toggleIcon" [ngClass]="class" class="showButton" (click)="whenClick()" aria-hidden="true"></i>
+	</ul>
+
+	<!-- <a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Hola</span></a>
+	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">About</span></a>
+	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Clients</span></a>
+	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Stats</span></a>
+-->
+	
+	
+	
+</div>
