@@ -24,8 +24,9 @@ export class MyFilterPipe2 implements PipeTransform {
         
         if(nombre === undefined) return alumnos;
 
+        let nombretxt=nombre.toString();
         return alumnos.filter(function(alumno){
-            return alumno.nombre_completo.toLowerCase().includes(nombre.toLowerCase());
+            return alumno.nombre_completo.toLowerCase().includes(nombretxt.toLowerCase());
         })
         }
 }

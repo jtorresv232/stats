@@ -5,8 +5,7 @@ import { MyFilterPipe,MyFilterPipe2 } from '../mypipe'
 @Component({
   selector: 'app-alumnos-lista',
   templateUrl: './alumnos-lista.component.html',
-  styleUrls: ['./alumnos-lista.component.css'],
-  pipes: [MyFilterPipe, MyFilterPipe2]
+  styleUrls: ['./alumnos-lista.component.css']
 })
 export class AlumnosListaComponent implements OnInit {
 
