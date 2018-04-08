@@ -76,7 +76,6 @@ export class SidenavComponent implements OnInit {
   }
 
   reDireccionar(path){
-   console.log(path);
     this._router.navigate([path]);
   }
 }

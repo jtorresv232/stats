@@ -1,16 +1,131 @@
 <main>
+
+	<a class="float" (click)="form.show(); actionText='Agregar Historia'; btnText='Agregar'; need='Es necesario llenar todos los campos'" mdbRippleRadius>
+	  <span class="tooltiptext">Agregar nueva historia</span>
+	  <i class="fa fa-plus my-float" style="color:#fff"></i>
+	</a>
+
 	<div style="min-height: 95vh; display: flex; width: 100%">
 	<div id="left" style="height: 100%; flex: 1">
 		<app-sidenav myOption="configuracion"></app-sidenav>
 	</div>
 
-	<div id="right" class="row" style="flex: 5">
-		<div class="container">
-			<div class="col-md-12">
-				<h3 class="flow-text" style="margin:20px">Aqui se modifican los textos del juego</h3>
-			</div>
+	<div id="right" style="flex: 5">
+		<i class="fa fa-info-circle info" (click)="info=!info"><span class="tooltiptext">Ayuda/Información</span></i>
+
+		<blockquote *ngIf="info" style="margin: 30px" class="blockquote bq-primary">
+		    <p class="bq-title">Información de uso para editar y agregar historias</p>
+		    <p>- Agregue un asterisco (*) para indicar un salto de linea en los textos del juego</p>
+		    <p>- Para indicar los números aleatorios que usará el juego escriba num1 para el primer número y num2 para el segundo</p>
+		</blockquote>
+
+
+
+
+
+		<div class="row z-depth-1-half" style="margin: 30px; background-color: white">
+			<table class="table table-sm table-striped text-center" style="margin-bottom: 0">
+
+			    <!--Table head-->
+			    <thead class="mdb-color darken-3">
+			        <tr class="text-white">
+			            <th>Id</th>
+			            <th>Nivel</th>
+			            <th>Operacion</th>
+			            <th>Mascota</th>
+			            <th>Descripción</th>
+			            <th>Edit</th>
+			            <th>Delete</th>
+			        </tr>
+			    </thead>
+			    <!--Table head-->
+
+			    <!--Table body-->
+			    <tbody>
+			        <tr *ngFor="let item of arrayHistorias">
+			            <th scope="row">{{item.id}}</th>
+			            <td>{{item.nivel}}</td>
+			            <td>{{(item.tipoOperacion==0)?"Suma": "Resta"}}</td>
+			            <td>{{item.tipoMascota}}</td>
+			            <td>{{item.descripcion}}</td>
+			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setDescripcion(item)"></i></td>
+			            <td><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;" (click)="borrarHistoria(item); setDescripcion(item)"></i></td>
+			        </tr>
+			        
+			    </tbody>
+			    <!--Table body-->
+			</table>
+			<!--Table-->
+                                    
 		</div>
 	</div>	
 	</div>
 	
 </main>
+
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i> {{actionText}}</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <textarea mdbActive type="text" id="form8" name="form8" [(ngModel)]="txtDescripcion" [value]="btnText=='Agregar' ? '' : txtDescripcion"  class="md-textarea mb-0"></textarea>
+                    <label for="form8">Descripción</label>
+                </div>
+
+                <div >
+					<i class="fa fa-paw prefix"></i>
+					<label for="form8">Mascota</label>
+					<select class="mdb-select" [(ngModel)]="petSelected">
+
+				      <option *ngFor='let pet of pets' [value]="pet" (click)="auxi(pet)" selected>{{pet}}</option>
+				      
+				    </select>
+				    
+				</div>
+
+				<div >
+					<i class="fa fa-level-up prefix"></i>
+					<label for="form8">Nivel</label>
+					<select class="mdb-select" [(ngModel)]="levelSelected">
+
+				      <option *ngFor='let level of levels' [value]="level" (click)="auxi(level)" selected>{{level}}</option>
+				      
+				    </select>
+				    
+				</div>
+
+				<div >
+					<i class="fa fa-calculator prefix"></i>
+					<label for="form8">Tipo de operacion</label>
+					<select class="mdb-select" [(ngModel)]="opSelected">
+
+				      <option *ngFor='let op of operations' [value]="op" (click)="auxi(op)" selected>{{op}}</option>
+				      
+				    </select>
+				    
+				</div>
+
+				<div><p>{{need}}</p></div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-light" (click)="updateText()" mdbRippleRadius>{{btnText}} <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

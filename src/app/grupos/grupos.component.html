@@ -1,16 +1,84 @@
 <main>
+	<a class="float" (click)="form.show(); actionText='Agregar Sabías que'; btnText='Agregar'" mdbRippleRadius>
+	  <span class="tooltiptext">Agregar nuevo</span>
+	  <i class="fa fa-plus my-float" style="color:#fff"></i>
+	</a>
+
 	<div style="min-height: 95vh; display: flex; width: 100%">
 	<div id="left" style="height: 100%; flex: 1">
-		<app-sidenav myOption="configuracion"></app-sidenav>
+		<app-sidenav myOption="administrar"></app-sidenav>
 	</div>
 
-	<div id="right" class="row" style="flex: 5">
-		<div class="container">
-			<div class="col-md-12">
-				<h3 class="flow-text" style="margin:20px">Aqui se buscan los alumnos por grupos</h3>
-			</div>
+	<div id="right" style="flex: 5">
+		<div class="row z-depth-1-half" style="margin: 30px; background-color: white">
+			<table class="table table-sm table-striped text-center" style="margin-bottom: 0">
+
+			    <!--Table head-->
+			    <thead class="mdb-color darken-3">
+			        <tr class="text-white">
+			            <th>Id</th>
+			            <th>Descripción</th>
+			            <th>Edit</th>
+			            <th>Delete</th>
+			        </tr>
+			    </thead>
+			    <!--Table head-->
+
+			    <!--Table body-->
+			    <tbody>
+			        <tr *ngFor="let grupo of arrayGrupos">
+			            <th scope="row">{{grupo.id}}</th>			            
+			            <td>{{grupo.descripcion}}</td>
+			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setDescripcion(grupo)"></i></td>
+			            <td><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;" (click)="borrarGrupo(grupo)"></i></td>
+			        </tr>
+			        
+			    </tbody>
+			    <!--Table body-->
+			</table>
+			<!--Table-->
+                                    
 		</div>
 	</div>	
 	</div>
 	
 </main>
+
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i> {{actionText}}</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <textarea mdbActive type="text" id="form8" name="form8" [(ngModel)]="txtGrupo" [value]="btnText=='Agregar' ? '' : txtGrupo"  class="md-textarea mb-0"></textarea>
+                    <label for="form8">Grupo</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <textarea mdbActive type="text" id="form8" name="form8" [(ngModel)]="txtDescripcion" [value]="btnText=='Agregar' ? '' : txtDescripcion"  class="md-textarea mb-0"></textarea>
+                    <label for="form8">Grupo</label>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-light" (click)="updateGrupo()" mdbRippleRadius>{{btnText}} <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

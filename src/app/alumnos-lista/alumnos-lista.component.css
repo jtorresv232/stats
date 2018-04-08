@@ -4,3 +4,98 @@ main {
 	display: flex;
 	flex-direction: row;
 }
+
+.float{
+  cursor: pointer;
+  transition: .3s ease-out;
+	position:fixed;
+    z-index:1000;
+	width:60px;
+	height:60px;
+	bottom:15px;
+	right:15px;
+	background-color:#FF5252;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.3);
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+.float .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+
+
+.float:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+.tooltiptext{
+  visibility: hidden;
+    min-width: 240px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    right: 110%;
+}
+
+.icon {
+    flex:1;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 5px;
+  left: 5px;
+  width: 45px !important;
+    height: 45px !important;
+}
+
+.busqueda {
+    flex:2;
+    margin:5px;
+    display:flex;
+}
+
+.info{
+    margin-left:20px;
+    margin-top: 4px;
+    position:absolute;
+    cursor:pointer;
+    font-size: 1.20em !important;
+}
+
+.info .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+
+
+.info:hover .tooltiptext {
+    opacity:0.9;
+    visibility: visible;
+    left:110%;
+}

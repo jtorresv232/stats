@@ -1,6 +1,6 @@
 export interface IAlumno {
 	id: number,
-	nombreCompleto: string,
+	nombre_completo: string,
 	grupo: string
 }
 

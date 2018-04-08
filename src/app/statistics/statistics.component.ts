@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {StatsService} from '../stats.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
   styleUrls: ['./statistics.component.css'],
-  providers: [StatsService]
+  providers: [HttpService]
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor(private _service: StatsService) { }
+  constructor(private _service: HttpService) { }
 
   public parameters:object;
   public res=[];

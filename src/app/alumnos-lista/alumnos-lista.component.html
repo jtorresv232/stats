@@ -1,29 +1,57 @@
 <main>
+
+	<a class="float" (click)="form.show(); actionText='Agregar alumno'; btnText='Agregar'; need='Es necesario que llene todos los campos'" mdbRippleRadius>
+	  <span class="tooltiptext">Agregar nuevo alumno</span>
+	  <i class="fa fa-user-plus my-float" style="color:#fff"></i>
+	</a>
+
+
 	<div style="min-height: 95vh; display: flex; width: 100%">
 	<div id="left" style="height: 100%; flex: 1">
 		<app-sidenav myOption="administrar"></app-sidenav>
 	</div>
 
 	<div id="right" class="row" style="flex: 5">
-		<div class="container">
+
+		<i class="fa fa-info-circle info" (click)="info=!info"><span class="tooltiptext">Ayuda/Información</span></i>
+
+		<blockquote *ngIf="info" style="margin: 30px" class="blockquote bq-primary text-center">
+		    <p class="bq-title">Información de uso para editar y agregar alumnos</p>
+		    <p>- Para actualizar el grupo de los estudiantes de manera masiva seleccione la casilla a la derecha de cada estudiante y presione el botón "Actualizar grupo masivamente", allí podrás seleccionar el grupo al cual deseas cambiar los estudiantes.</p>
+		    
+		</blockquote>
+		<div class="container" style="margin-right: 30px">
+
 			<div class="col-md-12">
-				<h3 class="flow-text" style="margin:20px">Lista de Alumnos Jorge Robledo</h3>
+				<h3 class="flow-text" style="margin:20px;text-align:center">Lista de Alumnos Jorge Robledo</h3>
+			</div>
+			<div style="display: flex">
+				<div class="busqueda"><i class="fa fa-search icon" style="flex:0.4; margin-top:14px"></i><input [(ngModel)]="filterGroup" style="flex:7" class="form-control form-control-sm" type="text" placeholder="Filtrar por grupo"></div>
+				<div class="busqueda"><i class="fa fa-search icon" style="flex:0.4; margin-top:14px"></i><input [(ngModel)]="filterName" style="flex:7" class="form-control form-control-sm" type="text" placeholder="Filtrar por nombre"></div>
+				<div style="flex:1; margin-right:40px"><button style="text-transform:none"type="button" class="btn btn-primary" (click)="form.show();btnText='Editar Masivamente'">Actualizar grupo masivamente</button></div>
 			</div>
 			<div class="col-md-12">
 				<div class="row">
-				<table class="table table-striped table-sm">
+
+				<table class="table table-striped table-sm" style="margin-right: 40px">
 					<thead class="blue-grey lighten-4">
 						<tr>
 							<th>ID</th>
 							<th>Nombre Completo</th>
 							<th>Grupo</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="let alumno of alumnos">
+						<tr *ngFor="let alumno of arrayAlumnos | thefilter:filterName | myfilter:filterGroup ">
 							<td>{{alumno.id}}</td>
-							<td>{{alumno.nombreCompleto}}</td>
+							<td>{{alumno.nombre_completo}}</td>
 							<td>{{alumno.grupo}}</td>
+							<td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setAlumno(alumno)"></i></td>
+			            <td><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;" (click)="borrarAlumno(alumno); setAlumno(alumno)"></i></td>
+			            <td><input type="checkbox" (change)="toggleCheck($event,alumno)" name=""></td>
 						</tr>
 					</tbody>
 				</table>
@@ -37,3 +65,47 @@
 	</div>
 	
 </main>
+
+<div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i> {{actionText}}</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div *ngIf="btnText!='Editar Masivamente'" class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtNombre" [value]="txtNombre" class="form-control">-->
+                    <textarea mdbActive type="text" id="form8" name="form8" [(ngModel)]="txtNombre" [value]="btnText=='Agregar' ? '' : txtNombre"  class="md-textarea mb-0"></textarea>
+                    <label for="form8">Nombre</label>
+                </div>
+
+                <div >
+					<i class="fa fa-group prefix"></i>
+					<label for="form8">Grupo</label>
+					<select class="mdb-select" [(ngModel)]="grupoSelected">
+
+				      <option *ngFor='let grupo of arrayGrupos' [value]="grupo.id" (click)="updateAlumno()" selected>{{grupo.id}}</option>
+				      
+				    </select>
+				    
+				</div>
+				<div><p>{{need}}</p></div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-light" (click)="updateAlumno()" mdbRippleRadius>{{btnText}} <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
