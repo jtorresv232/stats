@@ -143,16 +143,5 @@ export class AlumnosListaComponent implements OnInit {
     }
   }
 
-  filterList(){
-    if(this.filterText!=""){
-      this.filteredList=this.arrayAlumnos.filter(i=>{
-          return i.grupo==this.filterText;
-        });
-      return this.filteredList
-    }else{
-      return this.arrayAlumnos;
-    }
-  }
-
 
 }

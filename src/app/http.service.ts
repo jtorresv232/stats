@@ -11,7 +11,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   private _url: string = "http://luditics.eastus.cloudapp.azure.com/alumnos/";
-  private _url2:string = "http://localhost:8000/";
+  private _url2:string = "http://luditicsudea.eastus.cloudapp.azure.com/";
 
   getAlumnos():Observable<IAlumno[]>{
   	return this.http.get<IAlumno[]>(this._url2+'alumnos/');
