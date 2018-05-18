@@ -1,0 +1,105 @@
+<main>
+	<div style="min-height: 95vh; display: flex; width: 100%">
+	<div id="left" style="height: 100%; flex: 1">
+		<app-sidenav myOption="configuracion"></app-sidenav>
+	</div>
+
+	<div id="right" style="flex: 5">
+		<div class="row z-depth-1-half" style="margin: 30px; background-color: white">
+			<table class="table table-sm table-striped text-center" style="margin-bottom: 0">
+
+			    <!--Table head-->
+			    <thead class="mdb-color darken-3">
+			        <tr class="text-white">
+			            <th>RangoMin</th>
+			            <th>RangoMax</th>
+			            <th>Ayudas</th>
+			            <th>Número por operaciones</th>
+			            <th>Orden</th>
+			            <th>Actualizar</th>
+			        </tr>
+			    </thead>
+			    <!--Table head-->
+
+			    <!--Table body-->
+			    <tbody>
+			        <tr *ngFor="let configuracion of arrayConfiguraciones">
+			            <th scope="row">{{configuracion.rangoMin}}</th>			            
+			            <th scope="row">{{configuracion.rangoMax}}</th>
+			            <th scope="row">{{configuracion.ayuda}}</th>
+			            <th scope="row">{{configuracion.numPorOP}}</th>
+			            <th scope="row">{{(configuracion.orden)?"Ascendente": "Descendente"}}</th>
+			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setConfiguracion(configuracion)"></i></td>
+			        </tr>
+			        
+			    </tbody>
+			    <!--Table body-->
+			</table>
+			<!--Table-->
+                                    
+		</div>
+	</div>	
+	</div>
+	
+</main>
+
+<div style="overflow: auto" mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i>Actualizar Configuración de Juego</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close" (click)="form.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <input mdbActive type="text" id="form4" name="form4" (keyup)="solonumeros($event)" [(ngModel)]="rangoMin" [value]="rangoMin"  class="form-control">
+                    <label for="form4">RangoMin</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <input mdbActive type="text" id="form1" [(ngModel)]="rangoMax" [value]="rangoMax"  class="form-control">
+                    <label for="form1">RangoMax</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <input mdbActive type="text" id="form3" [(ngModel)]="ayudas" [value]="ayudas"  class="form-control">
+                    <label for="form3">Número de Ayudas</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <input mdbActive type="text" id="form2" [(ngModel)]="numeroPorOp" [value]="numeroPorOp"  class="form-control">
+                    <label for="form2">Número por operaciones</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <!--<input mdbActive type="text" id="form20" [(ngModel)]="txtDescripcion" [value]="txtDescripcion" class="form-control">-->
+                    <input type="checkbox" id="form6" style="margin-top: 20px; margin-right: 30px" (change)="toggleCheck($event)" name="">
+                    <label for="form6">Ascendente?</label>
+                </div>
+                
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-light" (click)="updateConfiguracion()" mdbRippleRadius>Actualizar <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>

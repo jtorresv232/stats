@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {HttpService} from './http.service';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { StatisticsComponent2 } from './statistics2/statistics2.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
@@ -22,6 +23,7 @@ import { MyFilterPipe, MyFilterPipe2 } from './mypipe';
     AppComponent,
     routingComponents,
     StatisticsComponent,
+    StatisticsComponent2,
     ToolbarComponent,
     SidenavComponent,
     TabBarComponent,

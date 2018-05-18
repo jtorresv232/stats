@@ -1,0 +1,64 @@
+
+<main>
+  <div style="min-height: 95vh; display: flex; width: 100%">
+  <div id="left" style="height: 100%; flex: 1">
+    <app-sidenav myOption="algo"></app-sidenav>
+  </div>
+
+  <div id="right" class="row" style="flex: 5">
+    <div class="grid-container" style="margin-left:10px">
+  <div class="card" >
+    <div class="card-body">
+      <!--Title-->
+      <h4 class="card-title">Card title</h4>
+      <!--Text-->
+
+
+        <div style="display: block; ">
+            <canvas mdbChart
+                [chartType]="chartType"
+                [datasets]="chartDatasets"
+                [labels]="chartLabels"
+                [colors]="chartColors"
+                [options]="chartOptions"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+            </canvas>
+        </div>
+    </div>
+  </div>
+  <div class="card" >
+    <div class="card-body">
+      <!--Title-->
+      <h4 class="card-title">Card title</h4>
+      <!--Text-->
+
+
+      <div style="display: block">
+  <canvas mdbChart
+      [chartType]="chartType2"
+      [data]="chartData2"
+      [labels]="chartLabels2"
+      [colors]="chartColors2"
+      [options]="chartOptions2"
+      [legend]="true"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+      >
+  </canvas>
+</div>
+
+    </div>
+  </div>
+  <div>
+
+  </div>
+  <div>
+
+  </div>
+</div>
+  </div>  
+  </div>
+  
+</main>

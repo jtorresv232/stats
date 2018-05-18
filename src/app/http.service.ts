@@ -12,17 +12,22 @@ export class HttpService {
 
   private _url: string = "http://luditics.eastus.cloudapp.azure.com/alumnos/";
   private _url2:string = "http://luditicsudea.eastus.cloudapp.azure.com/";
+  private _url3:string = "http://localhost:8000/";
 
   getAlumnos():Observable<IAlumno[]>{
-  	return this.http.get<IAlumno[]>(this._url2+'alumnos/');
-  }
-
-  getBarras(parameters):Observable<barras[]>{
-    return this.http.post<barras[]>('http://luditics.eastus.cloudapp.azure.com/barras/', parameters);
+  	return this.http.get<IAlumno[]>(this._url3+'alumnos/');
   }
 
   getSabiasQue(){
   	return this.http.get(this._url2 + 'sabiasQue/')
+  }
+
+  getBarras(data:any){
+    return this.http.post(this._url3 + 'barras/', data)
+  }
+
+  getCuenta(data:any){
+    return this.http.post(this._url3 + 'cuenta/', data)
   }
 
   getHistorias(){
@@ -30,7 +35,7 @@ export class HttpService {
   }
 
   getGrupos(){
-    return this.http.get(this._url2 + 'grupos/')
+    return this.http.get(this._url3 + 'grupos/')
   }
 
   agregarSabiasQue(data){

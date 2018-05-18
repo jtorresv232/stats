@@ -1,0 +1,36 @@
+Contadores:
+	-ayudas
+	-tipo de operacion.
+	-guardar desempeño
+	-indice
+	-orden
+	-cambio de operacion
+	-numero de fallos
+	-numero aciertos
+
+
+por operacion:
+Resultados en el debug.
+
+tipo 1: burbuja vacia
+
+ Desactivar tooltip (alpha 0)
+ logica que valide el numero, con el indice
+ txtdown
+
+
+tipo 2: copiar en letras
+ tooltip
+ no txtdown
+
+tipo 3: descomponer
+
+txtup numero normal.
+
+
+tipo 4: la otra.
+
+
+
+
+

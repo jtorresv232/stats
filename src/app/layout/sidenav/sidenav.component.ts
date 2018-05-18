@@ -48,8 +48,12 @@ export class SidenavComponent implements OnInit {
       }];
     } else {
       this.options=[{
-        nombre:"Estadisticas",
-        url:"/statistics",
+        nombre:"Estadisticas juego operaciones",
+        url:"/statistics1",
+        icon:"fa fa-pie-chart"
+      },{
+        nombre:"Estadisticas juego serializacion",
+        url:"/statistics2",
         icon:"fa fa-pie-chart"
       }];
     }
