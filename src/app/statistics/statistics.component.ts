@@ -20,7 +20,7 @@ export class StatisticsComponent implements OnInit {
   public fechaFinTorta:any;
   public res=[];
   public alumnos:any[];
-  public grupos:any[];
+  public grupos:any;
   public aciertosSuma:number[];
   public aciertosResta:number[];
   public fallosSuma:number[];
@@ -35,9 +35,9 @@ export class StatisticsComponent implements OnInit {
   public chartDataSuma:Array<any> = [300, 50, 100, 40, 120];
   public chartDataResta:Array<any> = [300, 50, 100, 40, 120];
    public chartColors2:Array<any> = [{
-        hoverBorderColor: ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)'], 
-        hoverBorderWidth: 0, 
-        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"], 
+        hoverBorderColor: ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)'],
+        hoverBorderWidth: 0,
+        backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
         hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5","#616774"]
     }];
 
@@ -107,10 +107,10 @@ export class StatisticsComponent implements OnInit {
       "juego":this.tipoJuego
     };
 
-    console.log(data);  
+    console.log(data);
     this._service.getCuenta(data).subscribe(res => {
       console.log(res);
-
+/*
       for (let item of res) {
         if(item['tipoOperacion']==0){
           this.estudiantesSuma[item['nivel']-1]=item.cuenta;
@@ -120,7 +120,7 @@ export class StatisticsComponent implements OnInit {
       }
       this.chartDataSuma=this.estudiantesSuma;
       this.chartDataResta=this.estudiantesResta;
-      this.habilitarTorta=true;
+      this.habilitarTorta=true;*/
     },err=>{
 
     });
@@ -138,7 +138,7 @@ export class StatisticsComponent implements OnInit {
     };
     this._service.getBarras(data).subscribe(res => {
       console.log(res);
-      for (let item of res) {
+      /*for (let item of res) {
         if(item['tipoOperacion']==0){
           this.aciertosSuma[item['nivel']-1]=item.aciertos;
           this.fallosSuma[item['nivel']-1]=item.fallos;
@@ -160,10 +160,10 @@ export class StatisticsComponent implements OnInit {
       ];
 
       this.habilitarBarChart=true;
- 
+*/
     },err=>{
       console.log(err);
     });
 
-
+}
 }

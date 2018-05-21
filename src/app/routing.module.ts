@@ -7,8 +7,10 @@ import { TextosComponent} from './textos/textos.component';
 import { ActividadesComponent } from './actividades/actividades.component';
 import { SabiasQueComponent } from './sabias-que/sabias-que.component';
 import { GruposComponent } from './grupos/grupos.component'
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+	{path: 'login', component: LoginComponent},
 	{path: 'listaAlumnos', component: AlumnosListaComponent},
 	{path: 'statistics1', component: StatisticsComponent},
 	{path: 'statistics2', component: StatisticsComponent2},
@@ -28,6 +30,7 @@ export const routingComponents =[AlumnosListaComponent,
 StatisticsComponent,
 StatisticsComponent2,
 TextosComponent,
+LoginComponent,
 ActividadesComponent,
 SabiasQueComponent,
 GruposComponent]

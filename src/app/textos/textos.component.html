@@ -1,3 +1,5 @@
+<app-toolbar></app-toolbar>
+<app-tab-bar></app-tab-bar>
 <main>
 
 	<a class="float" (click)="form.show(); actionText='Agregar Historia'; btnText='Agregar'; need='Es necesario llenar todos los campos'" mdbRippleRadius>
@@ -51,16 +53,16 @@
 			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setDescripcion(item)"></i></td>
 			            <td><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;" (click)="borrarHistoria(item); setDescripcion(item)"></i></td>
 			        </tr>
-			        
+
 			    </tbody>
 			    <!--Table body-->
 			</table>
 			<!--Table-->
-                                    
+
 		</div>
-	</div>	
 	</div>
-	
+	</div>
+
 </main>
 
 <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -91,9 +93,9 @@
 					<select class="mdb-select" [(ngModel)]="petSelected">
 
 				      <option *ngFor='let pet of pets' [value]="pet" (click)="auxi(pet)" selected>{{pet}}</option>
-				      
+
 				    </select>
-				    
+
 				</div>
 
 				<div >
@@ -102,9 +104,9 @@
 					<select class="mdb-select" [(ngModel)]="levelSelected">
 
 				      <option *ngFor='let level of levels' [value]="level" (click)="auxi(level)" selected>{{level}}</option>
-				      
+
 				    </select>
-				    
+
 				</div>
 
 				<div >
@@ -113,9 +115,9 @@
 					<select class="mdb-select" [(ngModel)]="opSelected">
 
 				      <option *ngFor='let op of operations' [value]="op" (click)="auxi(op)" selected>{{op}}</option>
-				      
+
 				    </select>
-				    
+
 				</div>
 
 				<div><p>{{need}}</p></div>

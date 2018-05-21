@@ -1,4 +1,5 @@
-
+<app-toolbar></app-toolbar>
+<app-tab-bar></app-tab-bar>
 <main>
   <div style="min-height: 95vh; display: flex; width: 100%">
     <div id="left" style="height: 100%; flex: 1">
@@ -30,7 +31,7 @@
                     </select>
                   </div>
 
-                </form>          
+                </form>
               </div>
               <hr>
 
@@ -101,7 +102,7 @@
                     </select>
                   </div>
 
-                </form>          
+                </form>
               </div>
               <hr>
 
@@ -172,34 +173,34 @@
                     </select>
                   </div>
 
-                </form>          
+                </form>
               </div>
               <hr>
 
               <div class="row">
                 <div class="col-md-6" *ngIf="habilitarTorta">
                   <h5 class="card-title text-center">Suma:</h5>
-                  <canvas mdbChart 
+                  <canvas mdbChart
                     [chartType]="chartType2"
-                    [data]="chartDataSuma" 
+                    [data]="chartDataSuma"
                     [labels]="chartLabels"
                     [colors]="chartColors2"
                     [options]="chartOptions"
                     [legend]="true"
-                    (chartHover)="chartHovered($event)" 
+                    (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)">
                   </canvas>
                 </div>
                  <div class="col-md-6" *ngIf="habilitarTorta">
                   <h5 class="card-title text-center">Resta:</h5>
-                  <canvas mdbChart 
+                  <canvas mdbChart
                     [chartType]="chartType2"
-                    [data]="chartDataResta" 
+                    [data]="chartDataResta"
                     [labels]="chartLabels"
                     [colors]="chartColors2"
                     [options]="chartOptions"
                     [legend]="true"
-                    (chartHover)="chartHovered($event)" 
+                    (chartHover)="chartHovered($event)"
                     (chartClick)="chartClicked($event)">
                   </canvas>
                 </div>
@@ -216,7 +217,7 @@
     </div>
   </div>
 
-</div>  
+</div>
 </div>
 
 </main>

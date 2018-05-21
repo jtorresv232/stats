@@ -1,3 +1,5 @@
+<app-toolbar></app-toolbar>
+<app-tab-bar></app-tab-bar>
 <main>
 	<a class="float" (click)="form.show(); actionText='Agregar Grupo'; btnText='Agregar'" mdbRippleRadius>
 	  <span class="tooltiptext">Agregar nuevo</span>
@@ -27,21 +29,21 @@
 			    <!--Table body-->
 			    <tbody>
 			        <tr *ngFor="let grupo of arrayGrupos">
-			            <th scope="row">{{grupo.id}}</th>			            
+			            <th scope="row">{{grupo.id}}</th>
 			            <td>{{grupo.descripcion}}</td>
 			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setDescripcion(grupo)"></i></td>
 			            <td><i class="fa fa-trash" aria-hidden="true" style="cursor: pointer;" (click)="borrarGrupo(grupo)"></i></td>
 			        </tr>
-			        
+
 			    </tbody>
 			    <!--Table body-->
 			</table>
 			<!--Table-->
-                                    
+
 		</div>
-	</div>	
 	</div>
-	
+	</div>
+
 </main>
 
 <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

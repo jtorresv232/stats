@@ -1,3 +1,5 @@
+<app-toolbar></app-toolbar>
+<app-tab-bar></app-tab-bar>
 <main>
 	<div style="min-height: 95vh; display: flex; width: 100%">
 	<div id="left" style="height: 100%; flex: 1">
@@ -24,23 +26,23 @@
 			    <!--Table body-->
 			    <tbody>
 			        <tr *ngFor="let configuracion of arrayConfiguraciones">
-			            <th scope="row">{{configuracion.rangoMin}}</th>			            
+			            <th scope="row">{{configuracion.rangoMin}}</th>
 			            <th scope="row">{{configuracion.rangoMax}}</th>
 			            <th scope="row">{{configuracion.ayuda}}</th>
 			            <th scope="row">{{configuracion.numPorOP}}</th>
 			            <th scope="row">{{(configuracion.orden)?"Ascendente": "Descendente"}}</th>
 			            <td><i class="fa fa-edit" aria-hidden="true" style="cursor: pointer;" (click)="form.show(); setConfiguracion(configuracion)"></i></td>
 			        </tr>
-			        
+
 			    </tbody>
 			    <!--Table body-->
 			</table>
 			<!--Table-->
-                                    
+
 		</div>
-	</div>	
 	</div>
-	
+	</div>
+
 </main>
 
 <div style="overflow: auto" mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -92,7 +94,7 @@
                     <input type="checkbox" id="form6" style="margin-top: 20px; margin-right: 30px" (change)="toggleCheck($event)" name="">
                     <label for="form6">Ascendente?</label>
                 </div>
-                
+
 
                 <div class="text-center mt-1-half">
                     <button class="btn btn-info mb-2 waves-light" (click)="updateConfiguracion()" mdbRippleRadius>Actualizar <i class="fa fa-send ml-1"></i></button>

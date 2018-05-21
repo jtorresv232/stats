@@ -19,14 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/font-awesome/css/font-awesome.css",
-        "../node_modules/angular-bootstrap-md/scss/bootstrap/bootstrap.scss",
-        "../node_modules/angular-bootstrap-md/scss/mdb-free.scss",
-        "./styles.scss"
+        "./styles.scss",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../scss/bootstrap/bootstrap.scss",
+        "../scss/mdb.scss"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/chart.js/dist/Chart.js",
+        "../node_modules/easy-pie-chart/dist/easypiechart.js",
+        "../node_modules/screenfull/dist/screenfull.js",
         "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",

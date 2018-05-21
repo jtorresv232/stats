@@ -1,3 +1,5 @@
+<app-toolbar></app-toolbar>
+<app-tab-bar></app-tab-bar>
 <main>
 
 	<a class="float" (click)="form.show(); actionText='Agregar alumno'; btnText='Agregar'; need='Es necesario que llene todos los campos'" mdbRippleRadius>
@@ -18,7 +20,7 @@
 		<blockquote *ngIf="info" style="margin: 30px" class="blockquote bq-primary text-center">
 		    <p class="bq-title">Información de uso para editar y agregar alumnos</p>
 		    <p>- Para actualizar el grupo de los estudiantes de manera masiva seleccione la casilla a la derecha de cada estudiante y presione el botón "Actualizar grupo masivamente", allí podrás seleccionar el grupo al cual deseas cambiar los estudiantes.</p>
-		    
+
 		</blockquote>
 		<div class="container" style="margin-right: 30px">
 
@@ -61,9 +63,9 @@
 			</div>
 
 		</div>
-	</div>	
 	</div>
-	
+	</div>
+
 </main>
 
 <div mdbModal #form="mdb-modal" class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -94,9 +96,9 @@
 					<select class="mdb-select" [(ngModel)]="grupoSelected">
 
 				      <option *ngFor='let grupo of arrayGrupos' [value]="grupo.id" (click)="updateAlumno()" selected>{{grupo.id}}</option>
-				      
+
 				    </select>
-				    
+
 				</div>
 				<div><p>{{need}}</p></div>
 
