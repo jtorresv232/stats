@@ -21,6 +21,10 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { TextosComponent } from './textos/textos.component';
 import { MyFilterPipe, MyFilterPipe2 } from './mypipe';
 import { LoginComponent } from './login/login.component';
+import {UserService} from './user.service';
+import {AuthGuardService} from './auth-guard.service';
+import {AdminAuthService} from './admin-auth.service';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +56,7 @@ import { LoginComponent } from './login/login.component';
     ToastModule.forRoot()
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
-  providers: [HttpService, MDBSpinningPreloader],
+  providers: [HttpService, AuthGuardService, AdminAuthService, UserService, MDBSpinningPreloader],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

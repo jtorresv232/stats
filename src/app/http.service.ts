@@ -86,4 +86,8 @@ export class HttpService {
     return this.http.delete(this._url2 + 'grupos/'+elem.id+'/')
   }
 
+  autenticarDocente(data:any){
+    return this.http.post(this._url3 + 'docenteById/',data);
+  }
+
 }

@@ -8,17 +8,19 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { SabiasQueComponent } from './sabias-que/sabias-que.component';
 import { GruposComponent } from './grupos/grupos.component'
 import { LoginComponent } from './login/login.component';
+import {AuthGuardService} from './auth-guard.service';
+import {AdminAuthService} from './admin-auth.service';
 
 const routes: Routes = [
 	{path: 'login', component: LoginComponent},
-	{path: 'listaAlumnos', component: AlumnosListaComponent},
-	{path: 'statistics1', component: StatisticsComponent},
-	{path: 'statistics2', component: StatisticsComponent2},
-	{path: 'textos', component: TextosComponent},
-	{path: 'actividades', component: ActividadesComponent},
-	{path: 'sabiasQue', component: SabiasQueComponent},
-	{path: 'grupos', component: GruposComponent},
-	{path: '', component: SabiasQueComponent}
+	{path: 'listaAlumnos', component: AlumnosListaComponent, canActivate: [AuthGuardService]},
+	{path: 'statistics1', component: StatisticsComponent, canActivate: [AuthGuardService]},
+	{path: 'statistics2', component: StatisticsComponent2, canActivate: [AuthGuardService] },
+	{path: 'textos', component: TextosComponent, canActivate: [AuthGuardService]},
+	{path: 'actividades', component: ActividadesComponent, canActivate: [AuthGuardService]},
+	{path: 'sabiasQue', component: SabiasQueComponent, canActivate: [AuthGuardService]},
+	{path: 'grupos', component: GruposComponent, canActivate: [AuthGuardService]},
+	{path: '', component: SabiasQueComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
