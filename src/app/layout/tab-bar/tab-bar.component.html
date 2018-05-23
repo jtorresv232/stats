@@ -1,8 +1,12 @@
-<div id="tabBar" class="tab nab">
-	<ul>
-		<li (click)="mover(0,'/textos')"><a class="as">Configuración de Juego</a></li>
-		<li (click)="mover(1,'/listaAlumnos')"><a class="as">Administración de Usuarios</a></li>
-		<li (click)="mover(2,'/statistics1')"><a class="as">Estadisticas</a></li>
-	</ul>
-	<div id="slide" class="slide"></div>
-</div>
+<!-- Nav tabs -->
+<mdb-tabset style="position:fixed; width:100%;top:34px;z-index:2" #staticTabs [buttonClass]="'nav-tabs tabs-3 light-blue darken-3'" [contentClass]="''">
+<!--Panel 1-->
+<mdb-tab heading="Configuración de juego" (select)="onSelectConf($event)">
+</mdb-tab>
+<!--Panel 2-->
+<mdb-tab heading="Administración de usuarios" (select)="onSelectAdmin($event)">
+</mdb-tab>
+<!--Panel 3-->
+<mdb-tab heading="Estadísticas" (select)="onSelectStats($event)">
+</mdb-tab>
+</mdb-tabset>

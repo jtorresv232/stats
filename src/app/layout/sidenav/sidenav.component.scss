@@ -1,3 +1,33 @@
+.float:hover{
+  background-color:#e0e0e0;
+}
+
+.aux{
+  padding: 0;
+}
+
+.float{
+  position: fixed;
+	bottom: 0; left: 10px;
+  cursor: pointer;
+  transition: .3s ease-out;
+	width:40px;
+	height: 40px;
+	background-color:inherit;
+	color:#FFF;
+	border-radius:50%;
+	text-align:center;
+}
+
+.my-float{
+  position: absolute;
+  top: 50%;
+	left: 50%;
+	height: 50%;
+	width: 50%;
+	margin: -30% 0 0 -60%;
+}
+
 .sidenav {
 
 	height: 100%;
@@ -41,8 +71,8 @@
 }
 
 .menus {
-	display:flex; 
-	flex-direction: row;	
+	display:flex;
+	flex-direction: row;
 }
 ul{
 	padding: 0;
@@ -60,5 +90,5 @@ ul>li:hover{
 
 i {
    padding: 4px 20px 4px 20px;
-   
+
 }

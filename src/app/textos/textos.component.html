@@ -2,17 +2,17 @@
 <app-tab-bar></app-tab-bar>
 <main>
 
-	<a class="float" (click)="form.show(); actionText='Agregar Historia'; btnText='Agregar'; need='Es necesario llenar todos los campos'" mdbRippleRadius>
+	<a style="z-index:999" class="float" (click)="form.show(); actionText='Agregar Historia'; btnText='Agregar'; need='Es necesario llenar todos los campos'" mdbRippleRadius>
 	  <span class="tooltiptext">Agregar nueva historia</span>
 	  <i class="fa fa-plus my-float" style="color:#fff"></i>
 	</a>
 
-	<div style="min-height: 95vh; display: flex; width: 100%">
-	<div id="left" style="height: 100%; flex: 1">
+	<div style="min-height: 100vh;position:relative">
+	<div id="left" style="transition: 0.5s; position:fixed; top:96px; left:0; width:19%; height: 100%">
 		<app-sidenav myOption="configuracion"></app-sidenav>
 	</div>
 
-	<div id="right" style="flex: 5">
+	<div id="right" style="overflow:auto; top:96px; transition: margin-left .5s; position: absolute; margin-left: 19%; width:81%; height:100%">
 		<i class="fa fa-info-circle info" (click)="info=!info"><span class="tooltiptext">Ayuda/Información</span></i>
 
 		<blockquote *ngIf="info" style="margin: 30px" class="blockquote bq-primary">

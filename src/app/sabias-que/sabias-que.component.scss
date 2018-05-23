@@ -2,7 +2,7 @@ main {
 	position: relative;
 	min-height: 95vh;
 	display: flex;
-	flex-direction: row;
+	flex-direction:column;
 }
 
 .float{
@@ -12,6 +12,7 @@ main {
 	width:60px;
 	height:60px;
 	bottom:15px;
+	z-index: 999;
 	right:15px;
 	background-color:#FF5252;
 	color:#FFF;

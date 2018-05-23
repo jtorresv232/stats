@@ -1,21 +1,16 @@
-<div class="sidenav" [style.width]="getWidth()">
-	
-	<ul>
-		<li *ngFor="let opcion of options">
-			<div class="menus" (click)="reDireccionar(opcion.url)">
-				<i [ngClass]="opcion.icon" style="flex:1"></i>
-				<span style="flex:7" *ngIf="show">{{opcion.nombre}}</span>
-			</div>
-		</li>
-		<i id="toggleIcon" [ngClass]="class" class="showButton" (click)="whenClick()" aria-hidden="true"></i>
-	</ul>
-
-	<!-- <a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Hola</span></a>
-	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">About</span></a>
-	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Clients</span></a>
-	<a href="#"><i class="fa fa-line-chart" style="padding-right: 20px" aria-hidden="true"></i><span *ngIf="show">Stats</span></a>
--->
-	
-	
-	
-</div>
+<div class="row" [style.width]="getWidth()" style="margin:0; background-color:#fafafa; height:100%; width:100%; border:1px solid #e0e0e0">
+    <div class="col-md-12" style="padding:0 3px 0 3px">
+        <ul class="nav  md-pills pills-primary flex-column" role="tablist">
+					<ng-container *ngFor="let opcion of options; let i=index">
+	          <li title="{{opcion.nombre}}" class="nav-item" style="padding:0.2rem">
+	              <a style="padding:0.5rem 1rem !important" (click)="reDireccionar(opcion.url)" class="nav-link" id="elm{{i}}" data-toggle="tab" role="tab"><span *ngIf="show">{{opcion.nombre}}</span>
+	              <i id="i{{i}}" [ngClass]="opcion.icon"></i>
+	              </a>
+	          </li>
+					</ng-container>
+        </ul>
+    </div>
+  </div>
+	<a class="float" (click)="openOrCloseNav()" mdbRippleRadius>
+    <i [ngClass]="myclass" style="color: #3E4551" aria-hidden="true"></i>
+  </a>

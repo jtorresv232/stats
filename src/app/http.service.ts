@@ -15,7 +15,7 @@ export class HttpService {
   private _url3:string = "http://localhost:8000/";
 
   getAlumnos():Observable<IAlumno[]>{
-  	return this.http.get<IAlumno[]>(this._url3+'alumnos/');
+  	return this.http.get<IAlumno[]>(this._url2+'alumnos/');
   }
 
   getSabiasQue(){
@@ -23,11 +23,11 @@ export class HttpService {
   }
 
   getBarras(data:any){
-    return this.http.post(this._url3 + 'barras/', data)
+    return this.http.post(this._url2 + 'barras/', data)
   }
 
   getCuenta(data:any){
-    return this.http.post(this._url3 + 'cuenta/', data)
+    return this.http.post(this._url2 + 'cuenta/', data)
   }
 
   getHistorias(){
@@ -35,7 +35,7 @@ export class HttpService {
   }
 
   getGrupos(){
-    return this.http.get(this._url3 + 'grupos/')
+    return this.http.get(this._url2 + 'grupos/')
   }
 
   agregarSabiasQue(data){
@@ -87,7 +87,7 @@ export class HttpService {
   }
 
   autenticarDocente(data:any){
-    return this.http.post(this._url3 + 'docenteById/',data);
+    return this.http.post(this._url2 + 'docenteById/',data);
   }
 
 }

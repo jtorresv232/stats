@@ -19,8 +19,7 @@ export class SabiasQueComponent implements OnInit {
 
   ngOnInit() {
   	this._service.getSabiasQue().subscribe(res => {
-  		this.arraySabias = res;
-  		console.log(this.arraySabias);
+  		this.arraySabias = res;  		
   	},err=>{
   		console.log(err);
   	});
@@ -58,7 +57,7 @@ export class SabiasQueComponent implements OnInit {
     let obj={
       "tipoTexto": 2,
       "habilitado": true,
-      "descripcion": this.txtDescripcion,      
+      "descripcion": this.txtDescripcion,
     };
     console.log(obj);
       this._service.agregarSabiasQue(obj).subscribe(res => {
@@ -68,12 +67,12 @@ export class SabiasQueComponent implements OnInit {
         this.txtDescripcion='';
       }, err => {
         console.log(err);
-      });        
+      });
    }else{
     let obj={
       "id": this.onEdit['id'],
       "descripcion": this.txtDescripcion,
-      "tipoTexto": 2     
+      "tipoTexto": 2
     };
     console.log(obj);
     this._service.actualizarSabiasQue(obj).subscribe(res => {
@@ -83,7 +82,7 @@ export class SabiasQueComponent implements OnInit {
         this.txtDescripcion='';
       }, err => {
         console.log(err);
-      });       
+      });
    }
 
   }

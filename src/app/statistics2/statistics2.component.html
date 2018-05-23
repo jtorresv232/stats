@@ -2,11 +2,11 @@
 <app-tab-bar></app-tab-bar>
 <main>
   <div style="min-height: 95vh; display: flex; width: 100%">
-  <div id="left" style="height: 100%; flex: 1">
+  <div id="left" style="transition: 0.5s; position:fixed; top:96px; left:0; width:19%; height: 100%">
     <app-sidenav myOption="algo"></app-sidenav>
   </div>
 
-  <div id="right" class="row" style="flex: 5">
+  <div id="right" style="overflow:auto; top:96px; transition: margin-left .5s; position: absolute; margin-left: 19%; width:81%; height:100%">
     <div class="grid-container" style="margin-left:10px">
   <div class="card" >
     <div class="card-body">

@@ -20,14 +20,14 @@
                 <form class="col-md-12" [formGroup]="loginForm">
                   <div class="md-form">
                     <i class="fa fa-user prefix grey-text" aria-hidden="true"></i>
-                    <input type="text" formControlName="iptUser" id="iptUser" class="form-control" mdbInputDirective>
-                    <label for="iptUser">Documento de identidad</label>
+                    <input type="text" data-error="Este campo es requerido" data-success="Entrada correcta!" formControlName="iptUser" id="iptUser" class="form-control" mdbInputDirective>
+                    <label for="iptUser">Documento de identidad (*)</label>
                   </div>
 
                   <div class="md-form mt-5">
                     <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" formControlName="iptPwd" id="iptPwd" class="form-control" mdbInputDirective>
-                    <label for="iptPwd">Contraseña</label>
+                    <input type="password" data-error="Este campo es requerido" data-success="Bien!" [mdbValidate]="false" formControlName="iptPwd" id="iptPwd" class="form-control" mdbInputDirective>
+                    <label for="iptPwd">Contraseña (*)</label>
                   </div>
 
                   <div class="text-center mt-5">

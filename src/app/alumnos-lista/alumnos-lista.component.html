@@ -2,18 +2,18 @@
 <app-tab-bar></app-tab-bar>
 <main>
 
-	<a class="float" (click)="form.show(); actionText='Agregar alumno'; btnText='Agregar'; need='Es necesario que llene todos los campos'" mdbRippleRadius>
+	<a style="z-index:999" class="float" (click)="form.show(); actionText='Agregar alumno'; btnText='Agregar'; need='Es necesario que llene todos los campos'" mdbRippleRadius>
 	  <span class="tooltiptext">Agregar nuevo alumno</span>
 	  <i class="fa fa-user-plus my-float" style="color:#fff"></i>
 	</a>
 
 
-	<div style="min-height: 95vh; display: flex; width: 100%">
-	<div id="left" style="height: 100%; flex: 1">
+	<div style="min-height: 100vh;position:relative">
+	<div id="left" style="transition: 0.5s; position:fixed; top:96px; left:0; width:19%; height: 100%">
 		<app-sidenav myOption="administrar"></app-sidenav>
 	</div>
 
-	<div id="right" class="row" style="flex: 5">
+	<div id="right" style="overflow:auto; transition: margin-left .5s; top:96px; position: absolute; margin-left: 19%; width:81%; height:100%">
 
 		<i class="fa fa-info-circle info" (click)="info=!info"><span class="tooltiptext">Ayuda/Información</span></i>
 
