@@ -29,15 +29,15 @@
 			<table class="table table-sm table-striped text-center" style="margin-bottom: 0">
 
 			    <!--Table head-->
-			    <thead class="mdb-color darken-3">
+			    <thead class="light-blue darken-4">
 			        <tr class="text-white">
 			            <th>Id</th>
 			            <th>Nivel</th>
-			            <th>Operacion</th>
+			            <th>Operación</th>
 			            <th>Mascota</th>
 			            <th>Descripción</th>
-			            <th>Edit</th>
-			            <th>Delete</th>
+			            <th>Editar</th>
+			            <th>Borrar</th>
 			        </tr>
 			    </thead>
 			    <!--Table head-->
@@ -88,39 +88,17 @@
                 </div>
 
                 <div >
-					<i class="fa fa-paw prefix"></i>
-					<label for="form8">Mascota</label>
-					<select class="mdb-select" [(ngModel)]="petSelected">
-
-				      <option *ngFor='let pet of pets' [value]="pet" (click)="auxi(pet)" selected>{{pet}}</option>
-
-				    </select>
+						<mdb-select [options]="pets" [(ngModel)]="petSelected" placeholder="Escoge tipo de mascota"></mdb-select>
 
 				</div>
 
 				<div >
-					<i class="fa fa-level-up prefix"></i>
-					<label for="form8">Nivel</label>
-					<select class="mdb-select" [(ngModel)]="levelSelected">
-
-				      <option *ngFor='let level of levels' [value]="level" (click)="auxi(level)" selected>{{level}}</option>
-
-				    </select>
-
+					<mdb-select [options]="levels" [(ngModel)]="levelSelected" placeholder="Escoge el nivel"></mdb-select>
 				</div>
 
 				<div >
-					<i class="fa fa-calculator prefix"></i>
-					<label for="form8">Tipo de operacion</label>
-					<select class="mdb-select" [(ngModel)]="opSelected">
-
-				      <option *ngFor='let op of operations' [value]="op" (click)="auxi(op)" selected>{{op}}</option>
-
-				    </select>
-
+					<mdb-select [options]="operations" [(ngModel)]="opSelected" placeholder="Escoge el tipo de operación"></mdb-select>
 				</div>
-
-				<div><p>{{need}}</p></div>
 
                 <div class="text-center mt-1-half">
                     <button class="btn btn-info mb-2 waves-light" (click)="updateText()" mdbRippleRadius>{{btnText}} <i class="fa fa-send ml-1"></i></button>

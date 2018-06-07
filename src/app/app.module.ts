@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {HttpService} from './http.service';
 import { ToastModule } from './typescripts/pro/alerts/toast/toast.module';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { StatisticsComponent2 } from './statistics2/statistics2.component';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
@@ -34,6 +35,7 @@ import {AdminAuthService} from './admin-auth.service';
     StatisticsComponent2,
     ToolbarComponent,
     SidenavComponent,
+    ConfiguracionComponent,
     TabBarComponent,
     GruposComponent,
     SabiasQueComponent,

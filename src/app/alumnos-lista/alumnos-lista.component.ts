@@ -35,8 +35,13 @@ export class AlumnosListaComponent implements OnInit {
       console.log(err);
     });
 
-  this._service.getGrupos().subscribe(res => {
-      this.arrayGrupos = res;
+  this._service.getGrupos2().subscribe(res => {
+      this.arrayGrupos = [];
+      for(var i=0;i<res['length'];i++){
+        this.arrayGrupos.push({value:res[i]['id'],label:res[i]['id']});
+      }
+      console.log("---");
+      console.log(this.arrayGrupos);
     },err=>{
       console.log(err);
     });
@@ -51,14 +56,14 @@ export class AlumnosListaComponent implements OnInit {
     this.grupoSelected=des.grupo;
   }
 
-  
+
 
   updateAlumno(){
    // this.txtDescripcion=this.txtDescripcion.replace(/\n/g, "*");
    if(this.btnText=='Agregar'){
     let obj={
       "nombre_completo": this.txtNombre,
-      "grupo": this.grupoSelected   
+      "grupo": this.grupoSelected
     };
     console.log(obj);
       this._service.agregarAlumno(obj).subscribe(res => {
@@ -68,14 +73,14 @@ export class AlumnosListaComponent implements OnInit {
         this.txtNombre='';
       }, err => {
         console.log(err);
-      });        
+      });
    }else if(this.btnText=='Editar Masivamente'){
     let obj;
     for(let selected of this.Selecteds){
       obj={
       "id":selected.id,
       "nombre_completo": selected.nombre_completo,
-      "grupo": this.grupoSelected   
+      "grupo": this.grupoSelected
       };
       this._service.actualizarAlumno(obj).subscribe(res => {
         selected['nombre_completo']=res['nombre_completo'];
@@ -87,8 +92,8 @@ export class AlumnosListaComponent implements OnInit {
       });
       var pos= this.arrayAlumnos.indexOf(this.arrayAlumnos.filter(i=>{
         return i.id==selected.id;
-      })[0]); 
-      this.arrayAlumnos[pos]=selected; 
+      })[0]);
+      this.arrayAlumnos[pos]=selected;
 
     }
     this.Selecteds=[];
@@ -96,7 +101,7 @@ export class AlumnosListaComponent implements OnInit {
     let obj={
       "id":this.onEdit['id'],
       "nombre_completo": this.txtNombre,
-      "grupo": this.grupoSelected   
+      "grupo": this.grupoSelected
     };
     console.log(obj);
     this._service.actualizarAlumno(obj).subscribe(res => {
@@ -107,7 +112,7 @@ export class AlumnosListaComponent implements OnInit {
         this.txtNombre='';
       }, err => {
         console.log(err);
-      });       
+      });
    }
 
   }

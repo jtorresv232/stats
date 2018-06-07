@@ -20,7 +20,7 @@ export class GruposComponent implements OnInit {
   constructor(private _service: HttpService) { }
 
   ngOnInit() {
-  	this._service.getGrupos().subscribe(res => {
+  	this._service.getGrupos2().subscribe(res => {
   		this.arrayGrupos = res;
   		console.log(this.arrayGrupos);
   	},err=>{
@@ -60,7 +60,7 @@ export class GruposComponent implements OnInit {
    if(this.btnText=='Agregar'){
     let obj={
       "id": this.txtGrupo,
-      "descripcion": this.txtDescripcion,      
+      "descripcion": this.txtDescripcion,
     };
     console.log(obj);
       this._service.agregarGrupo(obj).subscribe(res => {
@@ -71,11 +71,11 @@ export class GruposComponent implements OnInit {
         this.txtGrupo='';
       }, err => {
         console.log(err);
-      });        
+      });
    }else{
     let obj={
       "id": this.onEdit['id'],
-      "descripcion": this.txtDescripcion     
+      "descripcion": this.txtDescripcion
     };
     console.log(obj);
     this._service.actualizarGrupo(obj).subscribe(res => {
@@ -86,7 +86,7 @@ export class GruposComponent implements OnInit {
         this.txtDescripcion='';
       }, err => {
         console.log(err);
-      });       
+      });
    }
 
   }

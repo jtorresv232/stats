@@ -34,7 +34,11 @@ export class HttpService {
     return this.http.get(this._url2 + 'historias/')
   }
 
-  getGrupos(){
+  getGrupos(data:any){
+    return this.http.post(this._url2 + 'grupos_x_profesor/', data)
+  }
+
+  getGrupos2(){
     return this.http.get(this._url2 + 'grupos/')
   }
 
@@ -88,6 +92,14 @@ export class HttpService {
 
   autenticarDocente(data:any){
     return this.http.post(this._url2 + 'docenteById/',data);
+  }
+
+  getConfiguracion(){
+    return this.http.get(this._url2 + 'configuracion/');
+  }
+
+  getGrafico3(data:any){
+    return this.http.post(this._url2 + 'grafico3/',data);
   }
 
 }

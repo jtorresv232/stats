@@ -16,8 +16,8 @@ export class StatisticsComponent implements OnInit {
   public tipoJuego:string='operaciones';
   public fechaInicio:any;
   public fechaFin:any;
-  public fechaInicioTorta:any;
-  public fechaFinTorta:any;
+  public fechaInicioTortas:any;
+  public fechaFinTortas:any;
   public res=[];
   public alumnos:any[];
   public grupos:any;
@@ -28,24 +28,31 @@ export class StatisticsComponent implements OnInit {
   public habilitarBarChart:boolean=false;
   public habilitarTorta:boolean=false;
   public chartType:string = 'bar';
+  public optionsSelectEstudiante:Array<any>=[];
+  public optionsSelectGrupo:Array<any>=[];
+
+  public habilitarPieChart:boolean=false;
 
   public chartType2:string = 'pie';
   public estudiantesSuma:number[];
   public estudiantesResta:number[];
   public chartDataSuma:Array<any> = [300, 50, 100, 40, 120];
   public chartDataResta:Array<any> = [300, 50, 100, 40, 120];
-   public chartColors2:Array<any> = [{
+
+
+  public chartDatasetsTorta:Array<any>;
+  public chartDatasetsTorta2:Array<any>;
+  public chartDatasets:Array<any>;
+  public chartDatasets2:Array<any>;
+  public chartLabels:Array<any> = ['nivel 1', 'nivel 2', 'nivel 3', 'nivel 4', 'nivel 5'];
+
+  public chartColors2:Array<any> = [{
         hoverBorderColor: ['rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.1)'],
         hoverBorderWidth: 0,
         backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
         hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5","#616774"]
     }];
 
-
-
-  public chartDatasets:Array<any>;
-  public chartDatasets2:Array<any>;
-  public chartLabels:Array<any> = ['nivel 1', 'nivel 2', 'nivel 3', 'nivel 4', 'nivel 5'];
   public chartColors:Array<any> = [
     {
         backgroundColor: 'rgba(220,220,220,0.2)',
@@ -85,15 +92,34 @@ export class StatisticsComponent implements OnInit {
     this.fallosResta = new Array(this.chartLabels.length);
     this.estudiantesSuma = new Array(this.chartLabels.length);
     this.estudiantesResta = new Array(this.chartLabels.length);
+    this.chartDatasetsTorta=new Array(this.chartLabels.length);
+    this.chartDatasetsTorta2=new Array(this.chartLabels.length);
     this._service.getAlumnos().subscribe(res=>{
-      console.log(res);
       this.alumnos=res;
+      for(var i=0;i<res.length;i++){
+        var item=res[i];
+        var data={
+          value:item['id'], label:item['nombre_completo']
+        };
+        this.optionsSelectEstudiante.push(data);
+      }
     }, err=>{
       console.log(err);
     });
-    this._service.getGrupos().subscribe(res=>{
-      console.log(res);
+
+    var data={
+      "cedula":Number(localStorage.getItem('identificacion'))
+    }
+    this._service.getGrupos(data).subscribe(res=>{
       this.grupos=res;
+      console.log(res);
+      for(var i=0;i<res['length'];i++){
+        var item=res[i];
+        var data={
+          value:item['id'], label:item['id']
+        };
+        this.optionsSelectGrupo.push(data);
+      }
     }, err=>{
       console.log(err);
     });
@@ -102,34 +128,29 @@ export class StatisticsComponent implements OnInit {
   recargarEstadisticaTorta(){
     var data={
       "grupo":this.grupoSeleccionado,
-      "fechaInicio":this.fechaInicioTorta.toString(),
-      "fechaFin":this.fechaFinTorta.toString(),
-      "juego":this.tipoJuego
+      "fechaInicio":this.fechaInicioTortas.toString(),
+      "fechaFin":this.fechaFinTortas.toString()
     };
 
     console.log(data);
     this._service.getCuenta(data).subscribe(res => {
       console.log(res);
-/*
-      for (let item of res) {
+
+      for (var i=0; i<res['length']; i++) {
+        var item=res[i];
         if(item['tipoOperacion']==0){
-          this.estudiantesSuma[item['nivel']-1]=item.cuenta;
-        }else{
-          this.estudiantesResta[item['nivel']-1]=item.cuenta;
+          this.chartDatasetsTorta[item['nivel']-1]=item['cuenta'];
+        }else if(item['tipoOperacion']==1){
+          this.chartDatasetsTorta2[item['nivel']-1]=item['cuenta'];
         }
       }
-      this.chartDataSuma=this.estudiantesSuma;
-      this.chartDataResta=this.estudiantesResta;
-      this.habilitarTorta=true;*/
+      this.habilitarPieChart=true;
     },err=>{
 
     });
   }
 
   recargarEstadistica(){
-    console.log(this.alumnoSeleccionado);
-    console.log(this.fechaFin);
-    console.log(this.fechaInicio);
     var data={
       "idAlumno":this.alumnoSeleccionado,
       "fechaInicio":this.fechaInicio.toString(),
@@ -137,8 +158,9 @@ export class StatisticsComponent implements OnInit {
       "juego":this.tipoJuego
     };
     this._service.getBarras(data).subscribe(res => {
-      console.log(res);
-      /*for (let item of res) {
+      console.log(res)
+      for (var i=0; i <res['length']; i++) {
+        var item=res[i];
         if(item['tipoOperacion']==0){
           this.aciertosSuma[item['nivel']-1]=item.aciertos;
           this.fallosSuma[item['nivel']-1]=item.fallos;
@@ -147,20 +169,18 @@ export class StatisticsComponent implements OnInit {
           this.fallosResta[item['nivel']-1]=item.fallos;
         }
       }
-      console.log(this.aciertosSuma);
-      console.log(this.aciertosResta);
       this.chartDatasets=[
-       {data: this.aciertosSuma, label: 'Suma'},
-        {data: this.aciertosResta, label: 'Resta'}
+       {data: this.aciertosSuma, label: 'Aciertos'},
+        {data: this.fallosSuma, label: 'Fallos'}
       ];
 
       this.chartDatasets2=[
-       {data: this.fallosSuma, label: 'Suma'},
-        {data: this.fallosResta, label: 'Resta'}
+       {data: this.aciertosResta, label: 'Aciertos'},
+        {data: this.fallosResta, label: 'Fallos'}
       ];
 
       this.habilitarBarChart=true;
-*/
+
     },err=>{
       console.log(err);
     });

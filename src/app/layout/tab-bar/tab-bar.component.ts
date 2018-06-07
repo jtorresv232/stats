@@ -22,7 +22,7 @@ export class TabBarComponent implements OnInit {
       this.staticTabs.setActiveTab(2);
     }else if(this.currentUrl=='statistics1'||this.currentUrl=='statistics2'){
       this.staticTabs.setActiveTab(3);
-    }else if(this.currentUrl=='textos'||this.currentUrl=='actividades'||this.currentUrl=='sabiasQue'){
+    }else if(this.currentUrl=='textos'||this.currentUrl=='actividades'||this.currentUrl=='sabiasQue'||this.currentUrl=='configuracion'){
       this.staticTabs.setActiveTab(1);
     }else{
       this.staticTabs.setActiveTab(1);
@@ -45,6 +45,8 @@ export class TabBarComponent implements OnInit {
         this._router.navigate(['actividades']);
     }else if(localStorage.getItem('currentUrl')=='/textos'){
         this._router.navigate(['textos']);
+    }else if(localStorage.getItem('currentUrl')=='/configuracion'){
+        this._router.navigate(['configuracion']);
     }else{
       this._router.navigate(['sabiasQue']);
     }

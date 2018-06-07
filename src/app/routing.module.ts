@@ -8,12 +8,14 @@ import { ActividadesComponent } from './actividades/actividades.component';
 import { SabiasQueComponent } from './sabias-que/sabias-que.component';
 import { GruposComponent } from './grupos/grupos.component'
 import { LoginComponent } from './login/login.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminAuthService} from './admin-auth.service';
 
 const routes: Routes = [
 	{path: 'login', component: LoginComponent},
 	{path: 'listaAlumnos', component: AlumnosListaComponent, canActivate: [AuthGuardService]},
+	{path: 'configuracion', component: ConfiguracionComponent, canActivate: [AuthGuardService]},
 	{path: 'statistics1', component: StatisticsComponent, canActivate: [AuthGuardService]},
 	{path: 'statistics2', component: StatisticsComponent2, canActivate: [AuthGuardService] },
 	{path: 'textos', component: TextosComponent, canActivate: [AuthGuardService]},
@@ -32,6 +34,7 @@ export const routingComponents =[AlumnosListaComponent,
 StatisticsComponent,
 StatisticsComponent2,
 TextosComponent,
+ConfiguracionComponent,
 LoginComponent,
 ActividadesComponent,
 SabiasQueComponent,

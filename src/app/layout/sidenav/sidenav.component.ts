@@ -46,14 +46,18 @@ export class SidenavComponent implements OnInit {
         nombre:"Actividades",
         url:"/actividades",
         icon:"fa fa-puzzle-piece ml-2 aux"
+      },{
+        nombre:"Configuración serie",
+        url:"/configuracion",
+        icon:"fa fa-cog ml-2 aux"
       }];
     } else {
       this.options=[{
-        nombre:"Estadisticas juego operaciones",
+        nombre:"Estadísticas juego cocina",
         url:"/statistics1",
         icon:"fa fa-pie-chart ml-2 aux"
       },{
-        nombre:"Estadisticas juego serializacion",
+        nombre:"Estadísticas juego baño",
         url:"/statistics2",
         icon:"fa fa-pie-chart ml-2 aux"
       }];
@@ -70,12 +74,14 @@ export class SidenavComponent implements OnInit {
       document.getElementById("right").style.width='95.5%';
       document.getElementById("right").style.marginLeft='4.5%';
       this.show=false;
-      this.myclass="fa fa-angle-double-right my-float";
-      for (var i=0;i<3;i++) {
+      //this.myclass="fa fa-angle-double-right my-float";
+      for (var i=0;i<4;i++) {
         console.log('jummm');
         let entry=document.getElementById('i'+i);
         console.log(entry);
-        entry.classList.remove('ml-2');
+        if(entry!=null){
+          entry.classList.remove('ml-2');
+        }
         console.log(entry);
       }
     }else{
@@ -83,7 +89,7 @@ export class SidenavComponent implements OnInit {
       document.getElementById("left").style.width='19%';
       document.getElementById("right").style.width='81%';
       document.getElementById("right").style.marginLeft='19%';
-      this.myclass="fa fa-angle-double-left my-float";
+      // this.myclass="fa fa-angle-double-left my-float";
       var array=document.getElementsByClassName('aux');
       for (var i=0;i<array.length;i++) {
         let entry=array[i];
@@ -164,6 +170,8 @@ export class SidenavComponent implements OnInit {
         document.getElementById('elm1').classList.add('active');
       }else if(this._router.url==='/actividades'){
         document.getElementById('elm2').classList.add('active');
+      }else if(this._router.url==='/configuracion'){
+        document.getElementById('elm3').classList.add('active');
       }
     }else if(localStorage.getItem('currentTab')=='stats'){
       if(this._router.url==='/statistics1'){

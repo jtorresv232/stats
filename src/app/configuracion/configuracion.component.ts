@@ -20,12 +20,12 @@ export class ConfiguracionComponent implements OnInit {
   constructor(private _service: HttpService) { }
 
   ngOnInit() {
-  	/*this._service.getConfiguracion().subscribe(res => {
+  	this._service.getConfiguracion().subscribe(res => {
   		this.arrayConfiguraciones = res;
   		console.log(this.arrayConfiguraciones);
   	},err=>{
   		console.log(err);
-  	});*/
+  	});
   }
 
  	setConfiguracion(des){
@@ -45,7 +45,7 @@ export class ConfiguracionComponent implements OnInit {
       "rangoMax": this.rangoMax,
       "ayuda": this.ayudas,
       "numPorOP": this.numeroPorOp,
-      "orden": this.orden     
+      "orden": this.orden
     }
     console.log(obj);
     /*this._service.actualizarConfiguracion(obj).subscribe(res => {
@@ -58,8 +58,8 @@ export class ConfiguracionComponent implements OnInit {
         this.contentModal.hide();
       }, err => {
         console.log(err);
-      });    */   
-   
+      });    */
+
 
   }
 
@@ -76,4 +76,3 @@ export class ConfiguracionComponent implements OnInit {
   }
 
 }
-

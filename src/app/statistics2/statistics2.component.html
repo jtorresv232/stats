@@ -1,55 +1,150 @@
 <app-toolbar></app-toolbar>
 <app-tab-bar></app-tab-bar>
 <main>
-  <div style="min-height: 95vh; display: flex; width: 100%">
-  <div id="left" style="transition: 0.5s; position:fixed; top:96px; left:0; width:19%; height: 100%">
-    <app-sidenav myOption="algo"></app-sidenav>
+  <div style="min-height: 100vh;position:relative">
+    <div id="left" style="transition: 0.5s; position:fixed; top:96px; left:0; width:19%; height: 100%">
+      <app-sidenav myOption="algo"></app-sidenav>
+    </div>
+
+    <div id="right" style="overflow:auto; top:96px; transition: margin-left .5s; position: absolute; margin-left: 19%; width:81%; height:100%">
+      <div class="row" style="margin:20px">
+        <div class="col-md-12" style="padding: 0">
+          <div class="card" >
+            <div class="card-body">
+
+              <h5 class="card-title text-center">Aciertos y desaciertos por tipo de operación por estudiante</h5>
+
+              <div class="row" style="justify-content: center;">
+                <form class="col-md-12">
+                  <div class="row">
+                    <mdb-date-picker class="col-md-2 offset-md-1" name="fechaInicio" [options]="myDatePickerOptions" [placeholder]="'Fecha de inicio'" [(ngModel)]="fechaInicio" required></mdb-date-picker>
+                    <mdb-date-picker class="col-md-2" name="fechaFin" [options]="myDatePickerOptions" [placeholder]="'Fecha de fin'" [(ngModel)]="fechaFin" required></mdb-date-picker>
+                    <div class="col-md-3" style="padding-top:22px" *ngIf="fechaFin!=null && fechaInicio!=null">
+                        <mdb-select [options]="optionsSelectEstudiante" name="alumnoSeleccionado" [(ngModel)]="alumnoSeleccionado" placeholder="Escoje un estudiante"></mdb-select>
+                        <label style="top:11px">Nombre estudiante</label>
+                    </div>
+                    <div class="col-md-3" *ngIf="alumnoSeleccionado!=null&& alumnoSeleccionado!=''" style="padding-top:22px">
+                      <button type="button" class="btn btn-primary waves-light" (click)="recargarEstadistica()" mdbWavesEffect>Mostrar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-md-12" *ngIf="habilitarBarChart">
+                  <h5 class="card-title text-center">Serialización:</h5>
+                  <div style="display: block; ">
+                    <canvas mdbChart
+                    [chartType]="chartType"
+                    [datasets]="chartDatasets"
+                    [labels]="chartLabels"
+                    [colors]="chartColors"
+                    [options]="chartOptions"
+                    [legend]="true"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
+                  </canvas>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div>
+
+      </div>
+      <div>
+
+      </div>
+    </div>
   </div>
 
-  <div id="right" style="overflow:auto; top:96px; transition: margin-left .5s; position: absolute; margin-left: 19%; width:81%; height:100%">
-    <div class="grid-container" style="margin-left:10px">
-  <div class="card" >
-    <div class="card-body">
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
+  <div class="row" style="margin:20px">
+    <div class="col-md-12" style="padding: 0">
+      <div class="card" >
+        <div class="card-body">
 
+          <h5 class="card-title text-center">Aciertos y desaciertos por tipo de operación por grupo</h5>
 
-        <div style="display: block; ">
-            <canvas mdbChart
-                [chartType]="chartType"
-                [datasets]="chartDatasets"
-                [labels]="chartLabels"
-                [colors]="chartColors"
+          <div class="row" style="justify-content: center;">
+            <form class="col-md-12">
+              <div class="row">
+                <mdb-date-picker class="col-md-2 offset-md-1" name="fechaInicioTortas" [options]="myDatePickerOptions" [placeholder]="'Fecha de inicio'" [(ngModel)]="fechaInicioTortas" required></mdb-date-picker>
+                <mdb-date-picker class="col-md-2" name="fechaFinTortas" [options]="myDatePickerOptions" [placeholder]="'Fecha de fin'" [(ngModel)]="fechaFinTortas" required></mdb-date-picker>
+                <div class="col-md-3" style="padding-top:22px" *ngIf="fechaFinTortas!=null && fechaInicioTortas!=null">
+                    <mdb-select [options]="optionsSelectGrupo" name="grupoSeleccionado" [(ngModel)]="grupoSeleccionado" placeholder="Escoje un grupo"></mdb-select>
+                    <label style="top:11px">Grupo</label>
+                </div>
+                <div class="col-md-3" *ngIf="grupoSeleccionado!=null&& grupoSeleccionado!=''" style="padding-top:22px">
+                  <button type="button" class="btn btn-primary waves-light" (click)="recargarEstadisticaTorta()" mdbWavesEffect>Mostrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-3" *ngIf="habilitarPieChart">
+              <h6 class="card-title text-center">Valor numérico:</h6>
+              <div style="display: block; ">
+                <canvas mdbChart
+                [chartType]="chartType2"
+                [data]="chartDatasetsNumerico"
+                [labels]="chartLabels2"
+                [colors]="chartColors2"
                 [options]="chartOptions"
                 [legend]="true"
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+          </div>
+          <div class="col-md-3" *ngIf="habilitarPieChart">
+            <h6 class="card-title text-center">En letras:</h6>
+            <div style="display: block; ">
+              <canvas mdbChart
+              [chartType]="chartType2"
+              [data]="chartDatasetsLetras"
+              [labels]="chartLabels2"
+              [colors]="chartColors2"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
             </canvas>
+          </div>
         </div>
+        <div class="col-md-3" *ngIf="habilitarPieChart">
+          <h6 class="card-title text-center">Descomposición:</h6>
+          <div style="display: block; ">
+            <canvas mdbChart
+            [chartType]="chartType2"
+            [data]="chartDatasetsDesc1"
+            [labels]="chartLabels2"
+            [colors]="chartColors2"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="habilitarPieChart">
+        <h6 class="card-title text-center">Descomposición unidades:</h6>
+        <div style="display: block; ">
+          <canvas mdbChart
+          [chartType]="chartType2"
+          [data]="chartDatasetsDesc2"
+          [labels]="chartLabels2"
+          [colors]="chartColors2"
+          [options]="chartOptions"
+          [legend]="true"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
     </div>
-  </div>
-  <div class="card" >
-    <div class="card-body">
-      <!--Title-->
-      <h4 class="card-title">Card title</h4>
-      <!--Text-->
-
-
-      <div style="display: block">
-  <canvas mdbChart
-      [chartType]="chartType2"
-      [data]="chartData2"
-      [labels]="chartLabels2"
-      [colors]="chartColors2"
-      [options]="chartOptions2"
-      [legend]="true"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"
-      >
-  </canvas>
-</div>
-
+      </div>
     </div>
   </div>
   <div>
@@ -59,7 +154,8 @@
 
   </div>
 </div>
-  </div>
-  </div>
+</div>
 
-</main>
+  </div>
+  </div>
+  </main>

@@ -11,9 +11,21 @@ export class TextosComponent implements OnInit {
   public actionText:string;
   public onEdit;
   public btnText;
-  public pets=["Perro", "Gato"];
-  public levels=["1","2","3","4","5"];
-  public operations=["Suma","Resta"];
+  public pets=[
+      { value: 'Perro', label: 'Perro' },
+      { value: 'Gato', label: 'Gato' },
+  ];
+  public levels=[
+      { value: '1', label: '1' },
+      { value: '2', label: '2' },
+      { value: '3', label: '3' },
+      { value: '4', label: '4' },
+      { value: '5', label: '5' }
+  ];
+  public operations=[
+      { value: 'Suma', label: 'Suma' },
+      { value: 'Resta', label: 'Resta' },
+  ];
   public opSelected;
   public levelSelected;
   public petSelected:string;
@@ -45,7 +57,7 @@ export class TextosComponent implements OnInit {
     this.petSelected=des.tipoMascota;
   }
 
-  
+
 
   updateText(){
    // this.txtDescripcion=this.txtDescripcion.replace(/\n/g, "*");
@@ -54,10 +66,10 @@ export class TextosComponent implements OnInit {
     let obj={
       "tipoTexto": 1,
       "habilitado": true,
-      "descripcion": this.txtDescripcion, 
+      "descripcion": this.txtDescripcion,
       "tipoMascota":this.petSelected,
       "nivel": parseInt(this.levelSelected),
-      "tipoOperacion": op     
+      "tipoOperacion": op
     };
     console.log(obj);
       this._service.agregarHistoria(obj).subscribe(res => {
@@ -67,7 +79,7 @@ export class TextosComponent implements OnInit {
         this.txtDescripcion='';
       }, err => {
         console.log(err);
-      });        
+      });
    }else{
     let op = (this.opSelected=='Suma')?0:1;
     let obj={
@@ -76,7 +88,7 @@ export class TextosComponent implements OnInit {
       "tipoTexto": 1,
       "tipoMascota":this.petSelected,
       "nivel": parseInt(this.levelSelected),
-      "tipoOperacion": op      
+      "tipoOperacion": op
     };
     console.log(obj);
     this._service.actualizarHistoria(obj).subscribe(res => {
@@ -89,7 +101,7 @@ export class TextosComponent implements OnInit {
         this.txtDescripcion='';
       }, err => {
         console.log(err);
-      });       
+      });
    }
 
   }

@@ -18,4 +18,8 @@ export class ToolbarComponent implements OnInit {
     this.userService.logout();
   }
 
+  obtenerDocente(){
+    return 'Bienvenido(a) ' + localStorage.getItem('docente');
+  }
+
 }

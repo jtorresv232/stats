@@ -12,32 +12,28 @@
           <div class="card" >
             <div class="card-body">
 
-              <h5 class="card-title text-center">Numero de fallos y aciertos de un estudiante</h5>
+              <h5 class="card-title text-center">Número de fallos y aciertos de un estudiante por tipo de operación y nivel de dificultad</h5>
 
               <div class="row" style="justify-content: center;">
-                <form class="form-inline">
-                  <label>Fecha Inicio:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaInicio" class="form-control" name="fechaInicio">
+                <form class="col-md-12">
+                  <div class="row">
+                    <mdb-date-picker class="col-md-2 offset-md-1" name="fechaInicio" [options]="myDatePickerOptions" [placeholder]="'Fecha de inicio'" [(ngModel)]="fechaInicio" required></mdb-date-picker>
+                    <mdb-date-picker class="col-md-2" name="fechaFin" [options]="myDatePickerOptions" [placeholder]="'Fecha de fin'" [(ngModel)]="fechaFin" required></mdb-date-picker>
+                    <div class="col-md-3" style="padding-top:22px" *ngIf="fechaFin!=null && fechaInicio!=null">
+                        <mdb-select [options]="optionsSelectEstudiante" name="alumnoSeleccionado" [(ngModel)]="alumnoSeleccionado" placeholder="Escoje un estudiante"></mdb-select>
+                        <label style="top:11px">Nombre estudiante</label>
+                    </div>
+                    <div class="col-md-3" *ngIf="alumnoSeleccionado!=null&& alumnoSeleccionado!=''" style="padding-top:22px">
+                      <button type="button" class="btn btn-primary waves-light" (click)="recargarEstadistica()" mdbWavesEffect>Mostrar</button>
+                    </div>
                   </div>
-                  <label>Fecha Fin:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaFin" class="form-control" name="fechaFin">
-                  </div>
-                  <div class="md-form form-group">
-                    <select class="browser-default form-control" name="alumnoSeleccionado" [(ngModel)]="alumnoSeleccionado" (change)="recargarEstadistica()">
-                      <option value="" disabled selected>Escoja un estudiante</option>
-                      <option *ngFor="let option of alumnos" [ngValue]="option.id">{{option.nombre_completo}}</option>
-                    </select>
-                  </div>
-
                 </form>
               </div>
               <hr>
 
               <div class="row">
                 <div class="col-md-6" *ngIf="habilitarBarChart">
-                  <h5 class="card-title text-center"># Aciertos:</h5>
+                  <h5 class="card-title text-center"># Suma:</h5>
                   <div style="display: block; ">
                     <canvas mdbChart
                     [chartType]="chartType"
@@ -52,7 +48,7 @@
                 </div>
               </div>
               <div class="col-md-6" *ngIf="habilitarBarChart">
-                <h5 class="card-title text-center"># Fallos:</h5>
+                <h5 class="card-title text-center"># Resta:</h5>
                 <div style="display: block; ">
                   <canvas mdbChart
                   [chartType]="chartType"
@@ -78,144 +74,74 @@
       </div>
     </div>
   </div>
+
   <div class="row" style="margin:20px">
-        <div class="col-md-12" style="padding: 0">
-          <div class="card" >
-            <div class="card-body">
+    <div class="col-md-12" style="padding: 0">
+      <div class="card" >
+        <div class="card-body">
 
-              <h5 class="card-title text-center">Número de sesiones abiertas por día</h5>
+          <h5 class="card-title text-center">Número de estudiantes en el máximo nivel alcanzado</h5>
 
-              <div class="row" style="justify-content: center;">
-                <form class="form-inline">
-                  <label>Fecha Inicio:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaInicio" class="form-control" name="fechaInicio">
-                  </div>
-                  <label>Fecha Fin:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaFin" class="form-control" name="fechaFin">
-                  </div>
-                  <div class="md-form form-group">
-                    <select class="browser-default form-control" name="alumnoSeleccionado" [(ngModel)]="alumnoSeleccionado" (change)="recargarEstadistica()">
-                      <option value="" disabled selected>Escoja un estudiante</option>
-                      <option *ngFor="let option of alumnos" [ngValue]="option.id">{{option.nombre_completo}}</option>
-                    </select>
-                  </div>
-
-                </form>
-              </div>
-              <hr>
-
+          <div class="row" style="justify-content: center;">
+            <form class="col-md-12">
               <div class="row">
-                <div class="col-md-6" *ngIf="habilitarBarChart">
-                  <h5 class="card-title text-center"># Aciertos:</h5>
-                  <div style="display: block; ">
-                    <canvas mdbChart
-                    [chartType]="chartType"
-                    [datasets]="chartDatasets"
-                    [labels]="chartLabels"
-                    [colors]="chartColors"
-                    [options]="chartOptions"
-                    [legend]="true"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
-                  </canvas>
+                <mdb-date-picker class="col-md-2 offset-md-1" name="fechaInicioTortas" [options]="myDatePickerOptions" [placeholder]="'Fecha de inicio'" [(ngModel)]="fechaInicioTortas" required></mdb-date-picker>
+                <mdb-date-picker class="col-md-2" name="fechaFin" [options]="myDatePickerOptions" [placeholder]="'Fecha de fin'" [(ngModel)]="fechaFinTortas" required></mdb-date-picker>
+                <div class="col-md-3" style="padding-top:22px" *ngIf="fechaFinTortas!=null && fechaInicioTortas!=null">
+                    <mdb-select [options]="optionsSelectGrupo" name="grupoSeleccionado" [(ngModel)]="grupoSeleccionado" placeholder="Escoje un grupo"></mdb-select>
+                    <label style="top:11px">Grupo</label>
+                </div>
+                <div class="col-md-3" *ngIf="grupoSeleccionado!=null&& grupoSeleccionado!=''" style="padding-top:22px">
+                  <button type="button" class="btn btn-primary waves-light" (click)="recargarEstadisticaTorta()" mdbWavesEffect>Mostrar</button>
                 </div>
               </div>
-              <div class="col-md-6" *ngIf="habilitarBarChart">
-                <h5 class="card-title text-center"># Fallos:</h5>
-                <div style="display: block; ">
-                  <canvas mdbChart
-                  [chartType]="chartType"
-                  [datasets]="chartDatasets2"
-                  [labels]="chartLabels"
-                  [colors]="chartColors"
-                  [options]="chartOptions"
-                  [legend]="true"
-                  (chartHover)="chartHovered($event)"
-                  (chartClick)="chartClicked($event)">
-                </canvas>
-              </div>
+            </form>
+          </div>
+          <hr>
+
+          <div class="row">
+            <div class="col-md-4 offset-md-2" *ngIf="habilitarPieChart">
+              <h5 class="card-title text-center">Suma:</h5>
+              <div style="display: block; ">
+                <canvas mdbChart
+                [chartType]="chartType2"
+                [data]="chartDatasetsTorta"
+                [labels]="chartLabels"
+                [colors]="chartColors2"
+                [options]="chartOptions"
+                [legend]="true"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+              </canvas>
             </div>
           </div>
-
+          <div class="col-md-4" *ngIf="habilitarPieChart">
+            <h5 class="card-title text-center">Resta:</h5>
+            <div style="display: block; ">
+              <canvas mdbChart
+              [chartType]="chartType2"
+              [data]="chartDatasetsTorta2"
+              [labels]="chartLabels"
+              [colors]="chartColors2"
+              [options]="chartOptions"
+              [legend]="true"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
         </div>
       </div>
-      <div>
 
-      </div>
-      <div>
-
-      </div>
     </div>
   </div>
-  <div class="row" style="margin:20px">
-        <div class="col-md-12" style="padding: 0">
-          <div class="card" >
-            <div class="card-body">
+  <div>
 
-              <h5 class="card-title text-center">Porcentaje y número de estudiantes en cada nivel (Datos por un rango de fechas)</h5>
-
-              <div class="row" style="justify-content: center;">
-                <form class="form-inline">
-                  <label>Fecha Inicio:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaInicioTorta" class="form-control" name="fechaInicioTorta">
-                  </div>
-                  <label>Fecha Fin:</label>
-                  <div  style="margin-left: 10px" class="md-form form-group">
-                    <input type="date" [(ngModel)]="fechaFinTorta" class="form-control" name="fechaFinTorta">
-                  </div>
-                  <div class="md-form form-group">
-                    <select class="browser-default form-control" name="grupoSeleccionado" [(ngModel)]="grupoSeleccionado" (change)="recargarEstadisticaTorta()">
-                      <option value="" disabled selected>Escoja un grupo</option>
-                      <option *ngFor="let option of grupos" [ngValue]="option.id">{{option.id}}</option>
-                    </select>
-                  </div>
-
-                </form>
-              </div>
-              <hr>
-
-              <div class="row">
-                <div class="col-md-6" *ngIf="habilitarTorta">
-                  <h5 class="card-title text-center">Suma:</h5>
-                  <canvas mdbChart
-                    [chartType]="chartType2"
-                    [data]="chartDataSuma"
-                    [labels]="chartLabels"
-                    [colors]="chartColors2"
-                    [options]="chartOptions"
-                    [legend]="true"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
-                  </canvas>
-                </div>
-                 <div class="col-md-6" *ngIf="habilitarTorta">
-                  <h5 class="card-title text-center">Resta:</h5>
-                  <canvas mdbChart
-                    [chartType]="chartType2"
-                    [data]="chartDataResta"
-                    [labels]="chartLabels"
-                    [colors]="chartColors2"
-                    [options]="chartOptions"
-                    [legend]="true"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)">
-                  </canvas>
-                </div>
-              </div>
-
-        </div>
-      </div>
-      <div>
-
-      </div>
-      <div>
-
-      </div>
-    </div>
   </div>
+  <div>
+
+  </div>
+</div>
+</div>
 
 </div>
 </div>
