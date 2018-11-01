@@ -1,12 +1,21 @@
-<!-- Nav tabs -->
-<mdb-tabset style="position:fixed; width:100%;top:34px;z-index:2" #staticTabs [buttonClass]="'nav-tabs tabs-3 light-blue darken-3'" [contentClass]="''">
-<!--Panel 1-->
-<mdb-tab heading="Configuración de juego" (select)="onSelectConf($event)">
-</mdb-tab>
-<!--Panel 2-->
-<mdb-tab heading="Administración de usuarios" (select)="onSelectAdmin($event)">
-</mdb-tab>
-<!--Panel 3-->
-<mdb-tab heading="Estadísticas" (select)="onSelectStats($event)">
-</mdb-tab>
+<!--<mdb-tabset style="position:fixed; width:100%;top:34px;z-index:2" #staticTabs [buttonClass]="'nav-tabs tabs-3 light-blue darken-3'" [contentClass]="''">
+  <mdb-tab heading="Configuración de juego" (select)="onSelectConf($event)">
+  </mdb-tab>
+  <mdb-tab heading="Administración de usuarios" (select)="onSelectAdmin($event)">
+  </mdb-tab>
+  <mdb-tab heading="Estadísticas" (select)="onSelectStats($event)">
+  </mdb-tab>
+</mdb-tabset>
+-->
+<!-- Nav Tabs -->
+<mdb-tabset #staticTabs [buttonClass]="'md-tabs tabs-3'" style="position:fixed; width:100%;top:34px;z-index:2" [contentClass]="''">
+  <!--Panel 1-->
+  <mdb-tab heading="Configuración de juego" (click)="onSelectConf($event)">
+  </mdb-tab>
+  <!--Panel 2-->
+  <mdb-tab heading="Administración de usuarios" (click)="auxiliar()">
+  </mdb-tab>
+  <!--Panel 3-->
+  <mdb-tab heading="Estadísticas" (click)="onSelectStats($event)">
+  </mdb-tab>
 </mdb-tabset>

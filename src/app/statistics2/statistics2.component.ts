@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-statistics2',
@@ -21,7 +22,9 @@ export class StatisticsComponent2 implements OnInit {
   public res=[];
   public alumnos:any[];
   public grupos:any;
-
+  public myDatePickerOptions: IMyOptions = {
+          // Your options
+      };
 
   public aciertosAnyOp:number[];
   public fallosAnyOp:number[];

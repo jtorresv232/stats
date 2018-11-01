@@ -40,8 +40,6 @@ export class AlumnosListaComponent implements OnInit {
       for(var i=0;i<res['length'];i++){
         this.arrayGrupos.push({value:res[i]['id'],label:res[i]['id']});
       }
-      console.log("---");
-      console.log(this.arrayGrupos);
     },err=>{
       console.log(err);
     });
@@ -65,9 +63,7 @@ export class AlumnosListaComponent implements OnInit {
       "nombre_completo": this.txtNombre,
       "grupo": this.grupoSelected
     };
-    console.log(obj);
       this._service.agregarAlumno(obj).subscribe(res => {
-        console.log(res);
         this.arrayAlumnos.push(res);
         this.contentModal.hide();
         this.txtNombre='';
@@ -103,9 +99,7 @@ export class AlumnosListaComponent implements OnInit {
       "nombre_completo": this.txtNombre,
       "grupo": this.grupoSelected
     };
-    console.log(obj);
     this._service.actualizarAlumno(obj).subscribe(res => {
-        console.log(res);
         this.onEdit['nombre_completo']=res['nombre_completo'];
         this.onEdit['grupo']=res['grupo'];
         this.contentModal.hide();
@@ -120,14 +114,10 @@ export class AlumnosListaComponent implements OnInit {
   borrarAlumno(item){
     this.onDelete=item;
     var deleted=this.onDelete;
-    console.log("--------------");
-    console.log(this.onDelete);
-    console.log("--------------");
     var pos= this.arrayAlumnos.indexOf(this.arrayAlumnos.filter(i=>{
         return i.id==item.id;
       })[0]);
      this._service.borrarAlumno(deleted).subscribe(res => {
-      console.log(res);
       this.arrayAlumnos.splice(pos, 1);
     },err=>{
       console.log(err);
@@ -137,7 +127,6 @@ export class AlumnosListaComponent implements OnInit {
 
   toggleCheck(event,item){
     if(event.target.checked){
-      console.log(item);
       this.Selecteds.push(item);
     }else{
       var pos= this.Selecteds.indexOf(this.Selecteds.filter(i=>{

@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     console.log(route);
-    if (localStorage.getItem('identificacion')!=undefined) {
+    if (localStorage.getItem('identificacion')!=undefined) {      
       return true;
     } else {
       this.router.navigate(['login'], {queryParams: {redirectTo: state.url}});

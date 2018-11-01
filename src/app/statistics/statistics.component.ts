@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { IMyOptions } from 'ng-uikit-pro-standard';
 
 @Component({
   selector: 'app-statistics',
@@ -30,6 +31,10 @@ export class StatisticsComponent implements OnInit {
   public chartType:string = 'bar';
   public optionsSelectEstudiante:Array<any>=[];
   public optionsSelectGrupo:Array<any>=[];
+  public myDatePickerOptions: IMyOptions = {
+        // Your options
+    };
+
 
   public habilitarPieChart:boolean=false;
 

@@ -69,23 +69,18 @@ export class SidenavComponent implements OnInit {
     if(localStorage.getItem('isDrawerHide')==null){
       this.show=true;
     }else if(localStorage.getItem('isDrawerHide')=='true'){
-      console.log('por here');
       document.getElementById("left").style.width='4.5%';
       document.getElementById("right").style.width='95.5%';
       document.getElementById("right").style.marginLeft='4.5%';
       this.show=false;
       //this.myclass="fa fa-angle-double-right my-float";
       for (var i=0;i<4;i++) {
-        console.log('jummm');
         let entry=document.getElementById('i'+i);
-        console.log(entry);
         if(entry!=null){
           entry.classList.remove('ml-2');
         }
-        console.log(entry);
       }
     }else{
-      console.log('por here2');
       document.getElementById("left").style.width='19%';
       document.getElementById("right").style.width='81%';
       document.getElementById("right").style.marginLeft='19%';
@@ -163,7 +158,6 @@ export class SidenavComponent implements OnInit {
         document.getElementById('elm1').classList.add('active');
       }
     }else if(localStorage.getItem('currentTab')=='conf'){
-      console.log(this._router.url);
       if(this._router.url==='/sabiasQue'){
         document.getElementById('elm0').classList.add('active');
       }else if(this._router.url==='/textos'){
@@ -183,8 +177,7 @@ export class SidenavComponent implements OnInit {
     this.openOrHideNavInit();
   }
 
-  reDireccionar(path){
-    console.log('esta entradno pa redirect '+path)
+  reDireccionar(path){    
     localStorage.setItem('currentUrl',path);
     this._router.navigate([path]);
   }

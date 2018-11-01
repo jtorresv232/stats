@@ -22,7 +22,8 @@ const routes: Routes = [
 	{path: 'actividades', component: ActividadesComponent, canActivate: [AuthGuardService]},
 	{path: 'sabiasQue', component: SabiasQueComponent, canActivate: [AuthGuardService]},
 	{path: 'grupos', component: GruposComponent, canActivate: [AuthGuardService]},
-	{path: '', component: SabiasQueComponent, canActivate: [AuthGuardService]}
+	{path: '', component: SabiasQueComponent, canActivate: [AuthGuardService]},
+	{path: '**', component: SabiasQueComponent, canActivate: [AuthGuardService]}
 ];
 
 @NgModule({
