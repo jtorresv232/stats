@@ -60,6 +60,10 @@ export class SidenavComponent implements OnInit {
         nombre:"Estadísticas juego baño",
         url:"/statistics2",
         icon:"fa fa-pie-chart ml-2 aux"
+      },{
+        nombre:"Estadísticas modulo administrativo",
+        url:"/statisticsadmin",
+        icon:"fa fa-pie-chart ml-2 aux"
       }];
     }
 

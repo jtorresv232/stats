@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import {UserService} from './user.service';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminAuthService} from './admin-auth.service';
+import { StatisticsAdminComponent } from './statistics-admin/statistics-admin.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {AdminAuthService} from './admin-auth.service';
     TextosComponent,
     MyFilterPipe,
     MyFilterPipe2,
-    LoginComponent
+    LoginComponent,
+    StatisticsAdminComponent
   ],
   imports: [
     BrowserModule,

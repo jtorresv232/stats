@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { ConfiguracionComponent } from './configuracion/configuracion.component';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminAuthService} from './admin-auth.service';
+import {StatisticsAdminComponent} from './statistics-admin/statistics-admin.component'
 
 const routes: Routes = [
 	{path: 'login', component: LoginComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
 	{path: 'sabiasQue', component: SabiasQueComponent, canActivate: [AuthGuardService]},
 	{path: 'grupos', component: GruposComponent, canActivate: [AuthGuardService]},
 	{path: '', component: SabiasQueComponent, canActivate: [AuthGuardService]},
+	{path: 'statisticsadmin', component: StatisticsAdminComponent, canActivate: [AuthGuardService]},
 	{path: '**', component: SabiasQueComponent, canActivate: [AuthGuardService]}
 ];
 
