@@ -16,10 +16,11 @@
                       <form class="col-md-12">
                           <div class="row">
                               <mdb-date-picker class="col-md-2 offset-md-1" name="fechaInicio" [placeholder]="'Fecha de inicio'" required></mdb-date-picker>
-                              <mdb-select class="col-md-3 offset-md-1" [options]="optionsSelect" [multiple]="true" placeholder="Escoge las categorias" required></mdb-select>
+                              <mdb-select name="idCategorias" [(ngModel)]="idCategorias" class="col-md-3 offset-md-1" [options]="optionsSelect" [multiple]="true" placeholder="Escoge las categorias" required ></mdb-select>
                              <!-- <mdb-select class="col-md-3 offset-md-1" [options]="optionsSelect"  placeholder="Escoge el grupo" required></mdb-select>-->
-                              <mdb-select class="col-md-4 offset-md-1" [options]="optionsStudent" placeholder="Escoge el estudiante" required></mdb-select>
+                              <mdb-select name="idEstudiante" [(ngModel)]="idEstudiante" class="col-md-4 offset-md-1" [options]="optionsStudent" placeholder="Escoge el estudiante" required ></mdb-select>
                               <mdb-date-picker class="col-md-2 offset-md-1" name="fechaFin" [placeholder]="'Fecha de final'" required></mdb-date-picker>
+                              <button type="button" class="btn btn-primary waves-light" (click)="mostarGrafico()" mdbWavesEffect>Mostrar</button>
                           </div>
                       </form>
                   </div>
