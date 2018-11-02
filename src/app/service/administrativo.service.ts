@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AdministrativoService {
-  private API = "andresr.pythonanywhere.com/";
+  private API = "http://andresr.pythonanywhere.com/";
 
   constructor(private http: HttpClient) { }
 
   getStudents(idGroup: number) {
-    return this.http.get(this.API + "?id_grupo=" + idGroup);
+    return this.http.get<any>(this.API + "estudiantes?id_grupo=" + idGroup);
   }
 }

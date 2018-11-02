@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AdministrativoService} from '../service/administrativo.service'
 
 @Component({
   selector: 'app-statistics-admin',
@@ -6,30 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./statistics-admin.component.scss']
 })
 export class StatisticsAdminComponent implements OnInit {
-  optionsSelect: Array<any>;
-  optionsStudent: Array<any>;
+  optionsSelect: Array<any> = [];
+  optionsStudent: Array<any> = [];
 
   idCategorias : any;
   idEstudiante : any;
 
-  constructor() { }
+  constructor(private adminService: AdministrativoService) { }
 
   ngOnInit() {
+    this.adminService.getStudents(5).subscribe(data => {
+      data.entity.forEach(student => {
+        this.optionsStudent.push({value: student.id, label: student.nombres + " " + student.apellidos});
+      });
+    },
+    error => {
+
+    });
     this.optionsSelect = [
       { value: '1', label: 'Armonioso' },
       { value: '2', label: 'Aislamiento' },
       { value: '3', label: 'Felicidad' },
   ];
-  this.optionsStudent = [
-    {value: '1', label: 'Andrés Ruiz Graciano'},
-    {value: '2', label: 'Andrés Alvarez'},
-    {value: '3', label: 'Alejandro Gallego'},
-  ];
   }
 
   mostarGrafico() {
-    console.log(this.idCategorias);
-    console.log(this.idEstudiante);
+    console.log(this.optionsStudent);
   }
 
 }
