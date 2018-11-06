@@ -150,11 +150,6 @@ export class SidenavComponent implements OnInit {
 
   ngAfterViewInit(){
     //
-    var items=document.getElementsByClassName('nav-link') as HTMLCollectionOf<HTMLElement>;
-    for(var i=0; i<items.length;i++){
-      items[0].classList.remove('active');
-    }
-
     if(localStorage.getItem('currentTab')=='admin'){
       if(this._router.url==='/grupos'){
         document.getElementById('elm0').classList.add('active');
@@ -170,12 +165,18 @@ export class SidenavComponent implements OnInit {
         document.getElementById('elm2').classList.add('active');
       }else if(this._router.url==='/configuracion'){
         document.getElementById('elm3').classList.add('active');
+      }else{
+        document.getElementById('elm0').classList.add('active');
       }
     }else if(localStorage.getItem('currentTab')=='stats'){
       if(this._router.url==='/statistics1'){
         document.getElementById('elm0').classList.add('active');
-      }else{
+      }else if(this._router.url==='/statistics2'){
         document.getElementById('elm1').classList.add('active');
+      }else if(this._router.url==='/statisticsadmin'){
+        document.getElementById('elm2').classList.add('active');
+      }else{
+        document.getElementById('elm0').classList.add('active');
       }
     }
     this.openOrHideNavInit();

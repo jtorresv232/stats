@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AdministrativoService} from '../service/administrativo.service'
+import { AdministrativoService } from '../service/administrativo.service';
 
 @Component({
   selector: 'app-statistics-admin',
@@ -7,32 +7,57 @@ import {AdministrativoService} from '../service/administrativo.service'
   styleUrls: ['./statistics-admin.component.scss']
 })
 export class StatisticsAdminComponent implements OnInit {
-  optionsSelect: Array<any> = [];
-  optionsStudent: Array<any> = [];
+  public optionsCategories: Array<any> = [];
+  public optionsStudent: Array<any> = [];
 
-  idCategorias : any;
-  idEstudiante : any;
+  idCategories: any;
+  idStudent: any;
 
   constructor(private adminService: AdministrativoService) { }
 
   ngOnInit() {
-    this.adminService.getStudents(5).subscribe(data => {
-      data.entity.forEach(student => {
-        this.optionsStudent.push({value: student.id, label: student.nombres + " " + student.apellidos});
-      });
-    },
-    error => {
+    this.adminService.getStudents(5).subscribe(
+      data => {
+        data.entity.forEach(student => {
+          this.optionsStudent.push(
+            {
+              value: student.id,
+              label: student.nombres + ' ' + student.apellidos
+            }
+          );
+        });
+      },
+      error => {
 
-    });
-    this.optionsSelect = [
-      { value: '1', label: 'Armonioso' },
-      { value: '2', label: 'Aislamiento' },
-      { value: '3', label: 'Felicidad' },
-  ];
+      });
+    this.adminService.getCategories().subscribe(
+      data => {
+        data.entity.forEach(category => {
+          this.optionsCategories.push(
+            {
+              value: category.id,
+              label: category.nombre
+            }
+          );
+        });
+      },
+      error => {
+
+      }
+    );
+    /*this.optionsStudent.push({ value: 1, label: 'Esto si lo inserta' });
+    this.optionsStudent.push({ value: 5, label: 'Esto si lo ' });
+    this.optionsStudent.push({ value: 2, label: 'Esto ' });
+    this.optionsCategories = [
+      { value: 1, label: 'Armonioso' },
+      { value: 2, label: 'Aislamiento' },
+      { value: 3, label: 'Felicidad' },
+    ];*/
   }
 
   mostarGrafico() {
-    console.log(this.optionsStudent);
+    console.log(this.idStudent);
+    console.log(this.idCategories);
   }
 
 }

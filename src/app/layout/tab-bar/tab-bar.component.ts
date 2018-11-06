@@ -28,6 +28,7 @@ export class TabBarComponent implements OnInit {
   }
 
   tabSelected(index){
+    console.log('por aca men')
     if(index+1==1){
       localStorage.setItem('currentTab', 'conf');
       this._router.navigate(['sabiasQue']);
@@ -44,14 +45,15 @@ export class TabBarComponent implements OnInit {
   ngAfterViewInit(){
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        this.renderer.addClass(this.hostElement.nativeElement.querySelector('.tab-content'), 'p-0');
         setTimeout(()=>{
           this.currentUrl=this._router.url;
-          console.log(this.currentUrl)
+          console.log(this.currentUrl)  
           if(this.currentUrl=='/listaAlumnos'||this.currentUrl=='/grupos'){
             this.staticTabs.setActiveTab(2);
-          }else if(this.currentUrl=='/statistics1'||this.currentUrl=='/statistics2'){
+          }else if(this.currentUrl=='/statistics1'||this.currentUrl=='/statistics2'||this.currentUrl=='/statisticsadmin'){
             this.staticTabs.setActiveTab(3);
-          }else if(this.currentUrl=='/textos'||this.currentUrl=='/actividades'||this.currentUrl=='/sabiasQue'||this.currentUrl=='/configuracion'){
+          }else if(this.currentUrl==='/textos'||this.currentUrl==='/actividades'||this.currentUrl==='/sabiasQue'||this.currentUrl==='/configuracion'){
             this.staticTabs.setActiveTab(1);
           }else{
             this.staticTabs.setActiveTab(1);
