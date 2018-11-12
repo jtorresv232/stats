@@ -24,6 +24,19 @@ export class AdministrativoService {
       "fecha_inicial": initialDate,
       "fecha_final": finishDate,
       "id_categorias": categories
-  });
+    });
+  }
+
+  getGroupStatistics(idGroup: number, initialDate: string, finishDate: string, idCategory: number) {
+    return this.http.post<any>(this.API + 'estadisticas/grupal', {
+      "id_grupo": idGroup,
+      "fecha_inicial": initialDate,
+      "fecha_final": finishDate,
+      "id_categoria": idCategory
+    });
+  }
+
+  getGroupsByTeacher(idTeacher: number) {
+    return this.http.get<any>(this.API + 'grupos?id_profesor=' + idTeacher);
   }
 }

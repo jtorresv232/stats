@@ -9,14 +9,15 @@
     <div id="right" style="overflow:auto; top:96px; transition: margin-left .5s; position: absolute; margin-left: 19%; width:81%; height:100%">
       <div class="row" style="margin:20px">
         <div class="col-md-12" style="padding: 0">
+          <!--Start here-->
           <div class="card">
             <div class="card-body">
               <h5 class="card-title text-center">Número de veces que repite el pelado ese</h5>
               <div class="row" style="justify-content: center;">
                 <form class="col-md-12">
                   <div class="row">
-                    <mdb-date-picker [(ngModel)]="initialDate" class="col-md-2 offset-md-1" name="fechaInicio" [placeholder]="'Fecha de inicio'"
-                      required></mdb-date-picker>
+                    <mdb-date-picker [(ngModel)]="initialDate" class="col-md-2 offset-md-1" name="fechaInicio"
+                      [placeholder]="'Fecha de inicio'" required></mdb-date-picker>
                     <div class="col-md-3" style="padding-top:22px">
                       <mdb-select *ngIf="categoryOptions.length>0" name="idCategories" [(ngModel)]="idCategories"
                         [options]="categoryOptions" [multiple]="true" placeholder="Escoge las categorias" required></mdb-select>
@@ -40,12 +41,72 @@
 
               <hr />
               <div class="row" *ngIf="enabledBarChart">
-                <div class="col-md-6" >
+                <div class="col-md-12">
                   <h5 class="card-title text-center">Número de repeticiones</h5>
                   <div style="display: block;">
-                    <canvas mdbChart width="400" height="400" [chartType]="barType" [datasets]="barDatasets" [labels]="barLabels" [options]="chartOptions"
-                    [colors]="chartColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    <canvas mdbChart width="1000" height="500" [chartType]="barType" [datasets]="barDatasets" [labels]="barLabels"
+                      [options]="barOptions" [colors]="barColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
                     </canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--finish here-->
+
+          <br><br><br><br>
+
+          <div class="row" style="margin:20px">
+            <div class="col-md-12" style="padding: 0">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title text-center">Número de estudiantes en rangos dada una categoria</h5>
+                  <div class="row" style="justify-content: center;">
+                    <form class="col-md-12">
+                      <div class="row">
+                        <mdb-date-picker [(ngModel)]="initialPieDate" class="col-md-2 offset-md-1" name="fechaInicio"
+                          [placeholder]="'Fecha de inicio'" required></mdb-date-picker>
+
+                        <div class="col-md-4" style="padding-top:22px">
+                          <mdb-select *ngIf="groupOptions.length > 0" name="idGroup" [(ngModel)]="idGroup" [options]="groupOptions"
+                            placeholder="Escoge el grupo" required></mdb-select>
+                          <label>Escoge el grupo</label>
+                        </div>
+
+                        <div class="col-md-3" style="padding-top:22px">
+                          <mdb-select *ngIf="categoryOptions.length>0" name="idCategory" [(ngModel)]="idCategory"
+                            [options]="categoryOptions" placeholder="Escoge las categoria" required></mdb-select>
+                          <label>Escoge las categoria</label>
+                        </div>
+
+                        <mdb-date-picker [(ngModel)]="endPieDate" class="col-md-2 offset-md-1" name="fechaFin"
+                          [placeholder]="'Fecha final'" required></mdb-date-picker>
+
+                        <div class="col-md-4">
+                          <input type="number" name="range" [(ngModel)]="range">
+                          <label>Ingrese el valor entre los intervalos</label>
+                        </div>
+                        <div class="col-md-3" style="padding-top:22px">
+
+                          <button type="submit" class="btn btn-primary waves-light" (click)="mostarGrafico(2)"
+                            mdbWavesEffect>Mostrar</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+                  <hr />
+                  <div class="row" *ngIf="enablePieChart">
+                    <div class="col-md-12">
+                      <h5 class="card-title text-center">Número de estudiantes {{numStudents}}</h5>
+                      <div style="display: block;">
+                        <canvas mdbChart width="1000" height="500" [chartType]="pieType" [data]="pieData"
+                          [labels]="pieLables" [options]="pieOptions" [legend]="true" [colors]="pieColors" (chartHover)="chartHovered($event)"
+                          (chartClick)="chartClicked($event)">
+                        </canvas>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
