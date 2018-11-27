@@ -12,104 +12,184 @@
           <!--Start here-->
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title text-center">Número de veces que repite el pelado ese</h5>
+              <h5 class="card-title text-center">Número de ocurrencias de un estudiante</h5>
+              <br>
+              <br>
               <div class="row" style="justify-content: center;">
                 <form class="col-md-12">
-                  <div class="row">
-                    <mdb-date-picker [(ngModel)]="initialDate" class="col-md-2 offset-md-1" name="fechaInicio"
-                      [placeholder]="'Fecha de inicio'" required></mdb-date-picker>
-                    <div class="col-md-3" style="padding-top:22px">
+                  <div class="row align-content-start">
+                    <div class="col-md-2">
+                      <label>Fecha inicial</label>
+                      <mdb-date-picker [(ngModel)]="initialDate" name="fechaInicio" [placeholder]="'Agregar fecha...'"
+                        required></mdb-date-picker>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label>Fecha final</label>
+                      <mdb-date-picker [(ngModel)]="endDate" name="fechaFin" [placeholder]="'Agregar fecha...'" required></mdb-date-picker>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label>Categorias</label>
                       <mdb-select *ngIf="categoryOptions.length>0" name="idCategories" [(ngModel)]="idCategories"
                         [options]="categoryOptions" [multiple]="true" placeholder="Escoge las categorias" required></mdb-select>
-                      <label>Escoge las categorias</label>
                     </div>
-                    <!-- <mdb-select class="col-md-3 offset-md-1" [options]="optionsSelect"  placeholder="Escoge el grupo" required></mdb-select>-->
-                    <div class="col-md-4" style="padding-top:22px">
+                    <!-- <mdb-select class="col-md-auto" [options]="optionsSelect"  placeholder="Escoge el grupo" required></mdb-select>-->
+                    <div class="col-md-4">
+                        <label>Estudiante</label>
                       <mdb-select *ngIf="studentOptions.length > 0" name="idStudent" [(ngModel)]="idStudent" [options]="studentOptions"
                         placeholder="Escoge el estudiante" required></mdb-select>
-                      <label>Escoge el estudiante</label>
                     </div>
-                    <mdb-date-picker [(ngModel)]="endDate" class="col-md-2 offset-md-1" name="fechaFin" [placeholder]="'Fecha final'"
-                      required></mdb-date-picker>
-                    <div class="col-md-3" style="padding-top:22px">
+                  </div>
+                  <div class="row justify-content-center mt-3">
+                    <div class="col-md-auto">
                       <button type="submit" class="btn btn-primary waves-light" (click)="mostarGrafico(1)"
                         mdbWavesEffect>Mostrar</button>
                     </div>
                   </div>
                 </form>
               </div>
+            </div>
+          </div>
+
+          <hr />
+          <div class="row" *ngIf="enabledBarChart">
+            <div class="col-md-12">
+              <h5 class="card-title text-center">Comportamientos recurrentes</h5>
+              <div style="display: block;">
+                <canvas mdbChart width="1000" height="500" [chartType]="barType" [datasets]="barDatasets" [labels]="barLabels"
+                  [options]="barOptions" [colors]="barColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                </canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--finish here-->
+
+      <div class="row" style="margin:20px">
+        <div class="col-md-12" style="padding: 0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center">Distribución de las frecuencias de una categoría en el grupo</h5>
+              <br>
+              <br>
+              <div class="row" style="justify-content: center;">
+                <form class="col-md-12">
+                  <div class="row align-content-start">
+                    <div class="col-md-2">
+                      <label>Fecha inicial</label>
+                        <mdb-date-picker [(ngModel)]="initialPieDate" name="fechaInicio" [placeholder]="'Agregar fecha...'" required></mdb-date-picker>
+                    </div>
+
+                    <div class="col-md-2">
+                      <label>Fecha final</label>
+                        <mdb-date-picker [(ngModel)]="endPieDate" name="fechaFin"
+                        [placeholder]="'Agregar fecha...'" required></mdb-date-picker>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Grupo</label>
+                      <mdb-select *ngIf="groupOptions.length > 0" name="idGroup" [(ngModel)]="idGroup" [options]="groupOptions"
+                        placeholder="Escoge el grupo" required></mdb-select>
+                    </div>
+
+                    <div class="col-md-3" >
+                        <label>Categoria</label>
+                      <mdb-select *ngIf="categoryOptions.length>0" name="idCategory" [(ngModel)]="idCategory" [options]="categoryOptions"
+                        placeholder="Escoge la categoria" required></mdb-select>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label>Valor de los intervalos</label>
+                      <input  type="number" name="range" [(ngModel)]="range" placeholder="Valor">
+                    </div>
+                  </div>
+                    <div class="row justify-content-center mt-3">
+                      <div class="col-md-auto">
+                          <button type="submit" class="btn btn-primary waves-light" (click)="mostarGrafico(2)"
+                          mdbWavesEffect>Mostrar</button>
+                      </div>
+                    </div>
+                  
+                </form>
+              </div>
 
               <hr />
-              <div class="row" *ngIf="enabledBarChart">
+              <div class="row" *ngIf="enablePieChart">
                 <div class="col-md-12">
-                  <h5 class="card-title text-center">Número de repeticiones</h5>
+                  <h4 class="card-title text-center">Distribución grupal</h4>
+                  <h6 class="text-center">Número de estudiantes en el grupo: {{numStudents}}</h6>
                   <div style="display: block;">
-                    <canvas mdbChart width="1000" height="500" [chartType]="barType" [datasets]="barDatasets" [labels]="barLabels"
-                      [options]="barOptions" [colors]="barColors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    <canvas mdbChart width="1000" height="500" [chartType]="pieType" [data]="pieData" [labels]="pieLables"
+                      [options]="pieOptions" [legend]="true" [colors]="pieColors" (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
                     </canvas>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!--finish here-->
+      <!--Aquí se debe generar el tercer grafico-->
 
-          <br><br><br><br>
+      <div class="row" style="margin:20px">
+        <div class="col-md-12" style="padding: 0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-center"> Tendencia comportamental o cognitiva del grupo</h5>
+              <br>
+              <br>
+              <div class="row" style="justify-content: center;">
+                <form class="col-md-12">
+                  <div class="row align-content-start">
 
-          <div class="row" style="margin:20px">
-            <div class="col-md-12" style="padding: 0">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title text-center">Número de estudiantes en rangos dada una categoria</h5>
-                  <div class="row" style="justify-content: center;">
-                    <form class="col-md-12">
-                      <div class="row">
-                        <mdb-date-picker [(ngModel)]="initialPieDate" class="col-md-2 offset-md-1" name="fechaInicio"
-                          [placeholder]="'Fecha de inicio'" required></mdb-date-picker>
+                    <div class="col-md-2">
+                      <label>Fecha inicial</label>
+                        <mdb-date-picker [(ngModel)]="initialPieDate2" name="fechaInicio"
+                        [placeholder]="'Agregar fecha...'" required></mdb-date-picker>
+                    </div>
 
-                        <div class="col-md-4" style="padding-top:22px">
-                          <mdb-select *ngIf="groupOptions.length > 0" name="idGroup" [(ngModel)]="idGroup" [options]="groupOptions"
-                            placeholder="Escoge el grupo" required></mdb-select>
-                          <label>Escoge el grupo</label>
-                        </div>
+                    <div class="col-md-2">
+                      <label>Fecha final</label>
+                      <mdb-date-picker [(ngModel)]="endPieDate2" name="fechaFin"
+                      [placeholder]="'Agregar fecha...'" required></mdb-date-picker>
+                    </div>
 
-                        <div class="col-md-3" style="padding-top:22px">
-                          <mdb-select *ngIf="categoryOptions.length>0" name="idCategory" [(ngModel)]="idCategory"
-                            [options]="categoryOptions" placeholder="Escoge las categoria" required></mdb-select>
-                          <label>Escoge las categoria</label>
-                        </div>
+                    <div class="col-md-3">
+                      <label>Grupo</label>
+                      <mdb-select *ngIf="groupOptions.length > 0" name="idGroup" [(ngModel)]="idGroup2" [options]="groupOptions"
+                        placeholder="Escoge el grupo" required></mdb-select>
+                    </div>
 
-                        <mdb-date-picker [(ngModel)]="endPieDate" class="col-md-2 offset-md-1" name="fechaFin"
-                          [placeholder]="'Fecha final'" required></mdb-date-picker>
-
-                        <div class="col-md-4">
-                          <input type="number" name="range" [(ngModel)]="range">
-                          <label>Ingrese el valor entre los intervalos</label>
-                        </div>
-                        <div class="col-md-3" style="padding-top:22px">
-
-                          <button type="submit" class="btn btn-primary waves-light" (click)="mostarGrafico(2)"
-                            mdbWavesEffect>Mostrar</button>
-                        </div>
-                      </div>
-                    </form>
+                    <div class="col-md-3">
+                      <label>Categorias</label>
+                      <mdb-select *ngIf="categoryOptions.length>0" name="idCategories" [(ngModel)]="idCategories2"
+                          [options]="categoryOptions" [multiple]="true" placeholder="Escoge las categorias" required></mdb-select>
+                    </div>
                   </div>
-
-                  <hr />
-                  <div class="row" *ngIf="enablePieChart">
-                    <div class="col-md-12">
-                      <h5 class="card-title text-center">Número de estudiantes {{numStudents}}</h5>
-                      <div style="display: block;">
-                        <canvas mdbChart width="1000" height="500" [chartType]="pieType" [data]="pieData"
-                          [labels]="pieLables" [options]="pieOptions" [legend]="true" [colors]="pieColors" (chartHover)="chartHovered($event)"
-                          (chartClick)="chartClicked($event)">
-                        </canvas>
+                    <div class="row justify-content-center mt-3">
+                      <div class="col-md-auto">
+                          <button type="submit" class="btn btn-primary waves-light" (click)="mostarGrafico(3)"
+                          mdbWavesEffect>Mostrar</button>
                       </div>
+                    </div>
+                </form>
+              </div>
+              <hr>
+              <div class="row" *ngIf="enablePieChart2">
+                  <div class="col-md-12">
+                    <h4 class="card-title text-center">Tendencia grupal</h4>
+                    <div style="display: block;">
+                      <canvas mdbChart width="1000" height="500" [chartType]="pieType" [data]="pieData2" [labels]="pieLables2"
+                        [options]="pieOptions" [legend]="true" [colors]="pieColors" (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+                      </canvas>
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

@@ -56,6 +56,15 @@ export class StatisticsAdminComponent implements OnInit {
     responsive: true
   };
 
+  // Pie Data 2
+  enablePieChart2 = false;
+  pieData2: Array<any> = [];
+  pieLables2: Array<any> = [];
+  initialPieDate2: string;
+  idGroup2: number;
+  endPieDate2: string;
+  range2: number;
+  idCategories2: any;
 
   idCategory: number;
   idCategories: any;
@@ -155,13 +164,13 @@ export class StatisticsAdminComponent implements OnInit {
               if (index === this.numStudents - 1) {
                 this.pieData.push(count);
                 percentage = ((count / this.numStudents) * 100).toFixed(2) + '%';
-                this.pieLables.push(previosValue + '-' + value + ' => ' + percentage);
+                this.pieLables.push(previosValue + '-' + value + ' --- ' + percentage);
               }
 
             } else {
               this.pieData.push(count);
               percentage = ((count / this.numStudents) * 100).toFixed(2) + '%';
-              this.pieLables.push(previosValue + '-' + value + ' =>' + percentage);
+              this.pieLables.push(previosValue + '-' + value + ' --- ' + percentage);
 
               while (value < element.repeticiones) {
                 previosValue = value + 1;
@@ -172,7 +181,7 @@ export class StatisticsAdminComponent implements OnInit {
               if (index === this.numStudents - 1) {
                 this.pieData.push(count);
                 percentage = ((count / this.numStudents) * 100).toFixed(2) + '%';
-                this.pieLables.push(previosValue + '-' + value + ' ->' + percentage);
+                this.pieLables.push(previosValue + '-' + value + ' --- ' + percentage);
               }
             }
           });
@@ -183,6 +192,26 @@ export class StatisticsAdminComponent implements OnInit {
 
         }
       );
+    } else if (opt === 3) {
+      this.enablePieChart2 = false;
+      this.pieData2 = [];
+      this.pieLables2 = [];
+
+      this.adminService.getGroupStatistics2(this.idGroup2, this.initialPieDate2, this.endPieDate2, this.idCategories2).subscribe(
+        data => {
+          this.numStudents = data.entity.length;
+
+          data.entity.forEach(element1 => {
+            this.pieData2.push(element1.repeticiones);
+            this.pieLables2.push(element1.categoria__nombre);
+          });
+          this.enablePieChart2 = true;
+        },
+        error => {
+
+        }
+      );
+
     }
   }
 

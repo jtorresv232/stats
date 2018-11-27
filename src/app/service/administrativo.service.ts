@@ -36,6 +36,15 @@ export class AdministrativoService {
     });
   }
 
+  getGroupStatistics2(idGroup: number, initialDate: string, finishDate: string, categories) {
+    return this.http.post<any>(this.API + 'estadisticas/grupal2', {
+      "id_grupo": idGroup,
+      "fecha_inicial": initialDate,
+      "fecha_final": finishDate,
+      "id_categorias": categories
+    });
+  }
+
   getGroupsByTeacher(idTeacher: number) {
     return this.http.get<any>(this.API + 'grupos?id_profesor=' + idTeacher);
   }
