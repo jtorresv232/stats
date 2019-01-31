@@ -25,6 +25,8 @@ import { LoginComponent } from './login/login.component';
 import {UserService} from './user.service';
 import {AuthGuardService} from './auth-guard.service';
 import {AdminAuthService} from './admin-auth.service';
+import { StatisticsAdminComponent } from './statistics-admin/statistics-admin.component';
+import {AdministrativoService} from './service/administrativo.service'
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import {AdminAuthService} from './admin-auth.service';
     TextosComponent,
     MyFilterPipe,
     MyFilterPipe2,
-    LoginComponent
+    LoginComponent,
+    StatisticsAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,7 @@ import {AdminAuthService} from './admin-auth.service';
     StatsRoutingModule,
     ToastModule.forRoot()
   ],  
-  providers: [HttpService, AuthGuardService, AdminAuthService, UserService, MDBSpinningPreloader],
+  providers: [HttpService, AuthGuardService, AdminAuthService, UserService, MDBSpinningPreloader, AdministrativoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
